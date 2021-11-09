@@ -6,6 +6,6 @@ PhysicsMaterial2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Paul's_Balls
-  friction: 0.6
-  bounciness: 0.24
+  m_Name: Paul's_Balls 1
+  friction: 0.1
+  bounciness: 1.6
