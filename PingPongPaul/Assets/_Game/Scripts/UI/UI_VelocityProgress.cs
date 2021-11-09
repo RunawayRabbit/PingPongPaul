@@ -12,7 +12,6 @@ public class UI_VelocityProgress : MonoBehaviour {
 
     [SerializeField] private float alpha;
 
-    // Start is called before the first frame update
     void Start() {
         if (slider == null) {
             slider = GetComponentInChildren<Slider>();
@@ -32,8 +31,8 @@ public class UI_VelocityProgress : MonoBehaviour {
         direction = Vector3.forward;
     }
 
-    // Update is called once per frame
-    void Update() {
+    void Update()
+    {
 
         if (Input.GetKey(KeyCode.Mouse0) == true) {
 
@@ -54,6 +53,7 @@ public class UI_VelocityProgress : MonoBehaviour {
 
         if (Input.GetKeyUp(KeyCode.Mouse0)) {
             Destroy(canvas);
+            Paul.ShootBall.Invoke(direction, alpha);
         }
     }
 
