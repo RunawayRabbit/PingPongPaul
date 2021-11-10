@@ -1,6 +1,7 @@
 using Freya;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = Freya.Random;
 
 [System.Serializable] public class ShootBallEvent : UnityEvent<Vector2, float> { }
 
@@ -33,7 +34,7 @@ public class Ball : MonoBehaviour
 		if( randomRotation )
 		{
 			rb.AddForceAtPosition( Direction.normalized * (maxForce * forcePercent),
-								   transform.TransformPoint( Random.insideUnitCircle * radius ),
+								   transform.TransformPoint( Random.OnUnitCircle * radius ),
 								   ForceMode2D.Impulse );
 		}
 		else { rb.AddForce( Force, ForceMode2D.Impulse ); }

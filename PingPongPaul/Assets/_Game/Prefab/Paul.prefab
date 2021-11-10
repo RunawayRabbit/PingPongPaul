@@ -497,6 +497,7 @@ GameObject:
   - component: {fileID: 6683395603976848234}
   - component: {fileID: 6683395603976848233}
   - component: {fileID: 6683395603976848232}
+  - component: {fileID: 3431284908672659370}
   m_Layer: 0
   m_Name: PaulHand_R
   m_TagString: Untagged
@@ -640,6 +641,18 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: -20
     m_UpperAngle: 20
+--- !u!114 &3431284908672659370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6683395603976848238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c12d00c397d40ee4c902f7b87e418fee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6683395604043329372
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,6 +666,7 @@ GameObject:
   - component: {fileID: 6683395604043329368}
   - component: {fileID: 6683395604043329375}
   - component: {fileID: 6683395604043329374}
+  - component: {fileID: 8281958813087366966}
   m_Layer: 0
   m_Name: PaulHand_L
   m_TagString: Untagged
@@ -796,6 +810,18 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: -20
     m_UpperAngle: 20
+--- !u!114 &8281958813087366966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6683395604043329372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c12d00c397d40ee4c902f7b87e418fee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6683395604172202686
 GameObject:
   m_ObjectHideFlags: 0
