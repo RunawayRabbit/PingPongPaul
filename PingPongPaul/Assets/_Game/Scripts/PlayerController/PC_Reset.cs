@@ -15,6 +15,7 @@ public class PC_Reset : MonoBehaviour {
             ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             ball.GetComponent<Rigidbody2D>().angularVelocity = 0f;
             DestructibleSurface.ResetAllDestructibleSurfaces();
+            Paul.ResetAllPauls();
         }
     }
 }
