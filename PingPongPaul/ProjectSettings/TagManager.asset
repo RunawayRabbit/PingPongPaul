@@ -16,7 +16,7 @@ TagManager:
   - BluePortal
   - OrangePortal
   - Ball
-  - 
+  - BallAffector
   - 
   - 
   - 
@@ -40,4 +40,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Paul
+    uniqueID: 2774617081
     locked: 0

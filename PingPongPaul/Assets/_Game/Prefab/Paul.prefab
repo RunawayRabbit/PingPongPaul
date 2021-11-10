@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6683395602957056385}
   - component: {fileID: 6683395602957056384}
   - component: {fileID: 1489483489000640519}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Paul
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,14 +27,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6683395602957056391}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.479, y: 2.507, z: 0}
   m_LocalScale: {x: 0.24214, y: 0.24214, z: 0.24214}
   m_Children:
   - {fileID: 6683395604747851405}
-  - {fileID: 6683395604492482640}
   - {fileID: 6683395604721123492}
   - {fileID: 6683395604172202687}
+  - {fileID: 6683395604492482640}
   - {fileID: 6683395603748066009}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: -752842657174126936, guid: b512ddde33c4aff4bbddb84361eedeb0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 6683395603218282894}
   - component: {fileID: 6683395603218282893}
   - component: {fileID: 6683395603218282892}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PaulForearm_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,7 +275,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 0.009603724
+  m_Mass: 0.009603725
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 6683395603748066011}
   - component: {fileID: 6683395603748066010}
   - component: {fileID: 4606396553614013769}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PaulThigh_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -457,7 +457,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0.42}
-  m_ConnectedAnchor: {x: -0.3099998, y: -0.7799992}
+  m_ConnectedAnchor: {x: -0.31000003, y: -0.78000015}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -494,7 +494,7 @@ GameObject:
   - component: {fileID: 6683395603976848233}
   - component: {fileID: 6683395603976848232}
   - component: {fileID: 3431284908672659370}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PaulHand_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -604,7 +604,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 0.0071296236
+  m_Mass: 0.0071296263
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -628,7 +628,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0.18, y: 0}
-  m_ConnectedAnchor: {x: 0.0009169532, y: -0.27396184}
+  m_ConnectedAnchor: {x: 0.0009169916, y: -0.2739607}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -649,9 +649,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12d00c397d40ee4c902f7b87e418fee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGrabbing: 0
+  isGrabbing: 1
   grabTarget: {fileID: 0}
-  force: 0
+  force: 300
 --- !u!1 &6683395604043329372
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,7 +666,7 @@ GameObject:
   - component: {fileID: 6683395604043329375}
   - component: {fileID: 6683395604043329374}
   - component: {fileID: 8281958813087366966}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PaulHand_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -776,7 +776,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 0.007129626
+  m_Mass: 0.0071296236
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -795,12 +795,12 @@ HingeJoint2D:
   m_Enabled: 1
   serializedVersion: 4
   m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 6683395604721123494}
+  m_ConnectedRigidBody: {fileID: 6683395604867045658}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.15, y: 0}
-  m_ConnectedAnchor: {x: -0.22904886, y: -0.88774675}
+  m_ConnectedAnchor: {x: 0.0031473734, y: -0.31102675}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -837,7 +837,7 @@ GameObject:
   - component: {fileID: 6683395604172202682}
   - component: {fileID: 6683395604172202681}
   - component: {fileID: 6683395604172202680}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PaulArm_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -857,7 +857,7 @@ Transform:
   m_Children:
   - {fileID: 6683395603218282899}
   m_Father: {fileID: 6683395602957056387}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -0.418, y: 0.218, z: -27.558}
 --- !u!212 &6683395604172202683
 SpriteRenderer:
@@ -972,7 +972,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0.36}
-  m_ConnectedAnchor: {x: -0.50145245, y: 0.70815855}
+  m_ConnectedAnchor: {x: -0.50145245, y: 0.708158}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -995,7 +995,7 @@ GameObject:
   - component: {fileID: 6683395604213424542}
   - component: {fileID: 6683395604213424541}
   - component: {fileID: 76406848909589997}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PaulLeg_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1129,7 +1129,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0.14, y: 0.54}
-  m_ConnectedAnchor: {x: 0.027000062, y: -0.34900054}
+  m_ConnectedAnchor: {x: 0.027000308, y: -0.34899956}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1166,7 +1166,7 @@ GameObject:
   - component: {fileID: 6683395604492482642}
   - component: {fileID: 6683395604492482641}
   - component: {fileID: 3759977284531327445}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PaulThigh_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1186,7 +1186,7 @@ Transform:
   m_Children:
   - {fileID: 6683395604876010943}
   m_Father: {fileID: 6683395602957056387}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6683395604492482636
 SpriteRenderer:
@@ -1301,7 +1301,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0.45}
-  m_ConnectedAnchor: {x: 0.29599983, y: -0.7290002}
+  m_ConnectedAnchor: {x: 0.29599983, y: -0.72899973}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1337,7 +1337,7 @@ GameObject:
   - component: {fileID: 6683395604721123495}
   - component: {fileID: 6683395604721123494}
   - component: {fileID: 6683395604721123493}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PaulArm_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1357,7 +1357,7 @@ Transform:
   m_Children:
   - {fileID: 6683395604867045656}
   m_Father: {fileID: 6683395602957056387}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 26.693}
 --- !u!212 &6683395604721123488
 SpriteRenderer:
@@ -1472,7 +1472,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0.36}
-  m_ConnectedAnchor: {x: 0.48128426, y: 0.66963387}
+  m_ConnectedAnchor: {x: 0.48128426, y: 0.6696334}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1494,7 +1494,7 @@ GameObject:
   - component: {fileID: 6683395604747851400}
   - component: {fileID: 6683395604747851407}
   - component: {fileID: 6683395604747851406}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PaulFace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1618,7 +1618,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: -0.43}
-  m_ConnectedAnchor: {x: 0, y: 0.85199934}
+  m_ConnectedAnchor: {x: 0, y: 0.8519998}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1640,7 +1640,7 @@ GameObject:
   - component: {fileID: 6683395604867045659}
   - component: {fileID: 6683395604867045658}
   - component: {fileID: 6683395604867045657}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PaulForearm_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1798,7 +1798,7 @@ GameObject:
   - component: {fileID: 6683395604876010937}
   - component: {fileID: 6683395604876010936}
   - component: {fileID: 2627770246404972882}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PaulLeg_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1932,7 +1932,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0.1, y: 0.56}
-  m_ConnectedAnchor: {x: 0.013000085, y: -0.3569997}
+  m_ConnectedAnchor: {x: 0.013000085, y: -0.35700017}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
