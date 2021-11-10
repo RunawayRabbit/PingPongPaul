@@ -53,7 +53,7 @@ public class UI_VelocityProgress : MonoBehaviour {
 
         if (Input.GetKeyUp(KeyCode.Mouse0)) {
             Destroy(canvas);
-            Paul.ShootBall.Invoke(direction, alpha);
+            Ball.ShootBall.Invoke(direction, alpha);
         }
     }
 

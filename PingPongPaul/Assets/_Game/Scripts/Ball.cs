@@ -5,19 +5,22 @@ using UnityEngine.Events;
 
 
 [RequireComponent( typeof(Rigidbody2D), typeof(CircleCollider2D) )]
-public class Paul : MonoBehaviour
+public class Ball : MonoBehaviour
 {
 	public static ShootBallEvent ShootBall;
 	[SerializeField] private float maxForce = 14.0f;
 	[SerializeField] private bool randomRotation = false;
+
+	[SerializeField] private bool paulIsAttached = true;
 
 	private Rigidbody2D rb;
 	private float radius;
 
 	private void Awake()
 	{
-		rb        = this.GetComponent<Rigidbody2D>();
-		radius    = this.GetComponent<CircleCollider2D>().radius;
+		rb     = this.GetComponent<Rigidbody2D>();
+		radius = this.GetComponent<CircleCollider2D>().radius;
+
 		ShootBall = new ShootBallEvent();
 		ShootBall.AddListener( OnShootBall );
 	}
@@ -25,15 +28,13 @@ public class Paul : MonoBehaviour
 	public void OnShootBall( Vector2 Direction, float forcePercent )
 	{
 		var Force = Direction.normalized * (maxForce * forcePercent);
-		if(randomRotation)
+
+		if( randomRotation )
 		{
 			rb.AddForceAtPosition( Direction.normalized * (maxForce * forcePercent),
 								   transform.TransformPoint( Random.insideUnitCircle * radius ),
 								   ForceMode2D.Impulse );
 		}
-		else
-		{
-			rb.AddForce( Force, ForceMode2D.Impulse );
-		}
+		else { rb.AddForce( Force, ForceMode2D.Impulse ); }
 	}
 }
