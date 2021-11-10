@@ -95,7 +95,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 5407919355443828732}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 3f30464dc7d5a5045b392028314897f0, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -133,7 +133,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 3f30464dc7d5a5045b392028314897f0, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -225,3 +225,17 @@ MonoBehaviour:
     m_Bits: 0
   bluePortal: {fileID: 8964694790817032217, guid: 0246e2412d442f24ab131b88c6370258, type: 3}
   orangePortal: {fileID: 8964694790817032217, guid: 617f1cfef4af0834a85822f0d79483ab, type: 3}
+  portalGunDistance: 100
+--- !u!114 &7536717853944253082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7323923577018462298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41b895bd83c85ac4bb7b5f259826bd29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ball: {fileID: 5407919355443828734}

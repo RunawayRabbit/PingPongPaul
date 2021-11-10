@@ -446,6 +446,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d068391ba48e033459a3530d38e8e3e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rectTransform: {fileID: 28281624475952934}
+  ballTransform: {fileID: 0}
   canvas: {fileID: 3339294652211694581}
   parent: {fileID: 8436076301280194334}
   slider: {fileID: 4984963462207609662}

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PC_PortalGun : MonoBehaviour {
@@ -9,10 +7,12 @@ public class PC_PortalGun : MonoBehaviour {
     [SerializeField] private GameObject bluePortal;
     [SerializeField] private GameObject orangePortal;
 
+    [SerializeField] private float portalGunDistance = 100f;
+
     void Update() {
         Vector2 position = transform.position;
         Vector2 direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
-        RaycastHit2D raycast = Physics2D.Raycast(transform.position, direction, 10f, layermask);
+        RaycastHit2D raycast = Physics2D.Raycast(transform.position, direction, portalGunDistance, layermask);
         if (raycast) {
             Debug.DrawLine(position, raycast.point, Color.green);
 
