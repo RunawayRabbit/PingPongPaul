@@ -2,19 +2,22 @@
 
 public class OrangePortal : MonoBehaviour {
 
-    private static OrangePortal other;
+    public static OrangePortal orangePortal;
 
-    BluePortal otherPortal;
+    [SerializeField] private new BoxCollider2D collider;
+    [SerializeField] private Vector2 normal;
+    public static Vector2 HitDirection;
+    public static Vector2 OutDirection;
 
-    new BoxCollider2D collider;
-    [SerializeField] Vector2 normal;
+    [SerializeField] private bool canTeleport;
 
-    // Start is called once per start, just so you know Euan!!!!
     void Start() {
-        if (other != null) {
-            Destroy(other.gameObject);
+        if (orangePortal != null) {
+            Destroy(orangePortal.gameObject);
         }
-        other = this;
+        orangePortal = this;
+
+        canTeleport = true;
     }
 
 
@@ -22,5 +25,35 @@ public class OrangePortal : MonoBehaviour {
         this.normal = normal;
     }
 
+    private void OnTriggerEnter2D(Collider2D other) {
+        print("Hello from Orangeportal");
+
+        if (canTeleport == true && BluePortal.bluePortal != null) {
+            GameObject paul = other.gameObject;
+            Rigidbody2D rigidbody = paul.GetComponent<Rigidbody2D>();
+
+            Vector3 inPosition = transform.InverseTransformPoint(paul.transform.position);
+            inPosition = -inPosition;
+            Vector3 outPosition = BluePortal.bluePortal.transform.TransformPoint(inPosition);
+
+            Vector3 inDirection = transform.InverseTransformDirection(rigidbody.velocity);
+            Vector3 outDirection = BluePortal.bluePortal.transform.TransformDirection(inDirection);
+
+            paul.transform.position = outPosition;
+            rigidbody.velocity = -outDirection;
+
+            BluePortal.bluePortal.CanTeleport(false);
+            canTeleport = false;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision) {
+        canTeleport = true;
+
+    }
+
+    public void CanTeleport(bool newActive) {
+        canTeleport = newActive;
+    }
 
 }

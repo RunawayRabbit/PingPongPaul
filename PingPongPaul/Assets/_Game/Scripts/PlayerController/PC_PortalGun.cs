@@ -3,19 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PC_PortalGun : MonoBehaviour {
-    // Start is called before the first frame update
-
     [SerializeField] private LayerMask layermask;
+    [SerializeField] private LayerMask layermaskPortal;
 
     [SerializeField] private GameObject bluePortal;
     [SerializeField] private GameObject orangePortal;
 
-
-    void Start() {
-
-    }
-
-    // Update is called once per frame
     void Update() {
         Vector2 position = transform.position;
         Vector2 direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
@@ -34,9 +27,9 @@ public class PC_PortalGun : MonoBehaviour {
                 portal.SetPortalNormal(raycast.normal);
             }
         }
-        else {
-            //Debug.DrawLine(position, position + (direction * 10f), Color.red);
-        }
 
+        else {
+
+        }
     }
 }
