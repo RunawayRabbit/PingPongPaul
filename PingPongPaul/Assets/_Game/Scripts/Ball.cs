@@ -39,7 +39,6 @@ public class Ball : MonoBehaviour
 		}
 		else
 		{
-			Debug.DrawRay(transform.position, Direction, Color.cyan, 10.0f);
 			rb.AddForce( Force, ForceMode2D.Impulse );
 		}
 	}
