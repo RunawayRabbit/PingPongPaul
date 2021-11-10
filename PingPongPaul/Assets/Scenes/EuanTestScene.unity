@@ -840,7 +840,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5407919355443828732, guid: fd5e9956dc2ed7b42893be390cb951cb, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5407919355443828734, guid: fd5e9956dc2ed7b42893be390cb951cb, type: 3}
       propertyPath: paulIsAttached
