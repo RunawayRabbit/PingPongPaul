@@ -49,11 +49,17 @@ public class UI_VelocityProgress : MonoBehaviour {
             alpha = Mathf.Lerp(0, 1, Mathf.Clamp(distance, 0, sliderLength) / sliderLength);
             slider.value = alpha;
             //Destroy(canvas);
+
+            Time.timeScale      = 0.05f;
+            Time.fixedDeltaTime = Time.timeScale* 0.02f;
         }
 
         if (Input.GetKeyUp(KeyCode.Mouse0)) {
             Destroy(canvas);
             Ball.ShootBall.Invoke(direction, alpha);
+
+            Time.timeScale      = 1.0f;
+            Time.fixedDeltaTime = Time.timeScale* 0.02f;
         }
     }
 

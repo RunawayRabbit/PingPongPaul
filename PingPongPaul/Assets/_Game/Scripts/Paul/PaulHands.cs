@@ -5,6 +5,7 @@ using UnityEngine;
 public class PaulHands : MonoBehaviour
 {
 	private Rigidbody2D rb;
+	private Rigidbody2D parentRb;
 
 	[SerializeField] private bool isGrabbing = false;
 	[SerializeField] private Transform grabTarget;
@@ -12,7 +13,8 @@ public class PaulHands : MonoBehaviour
 
 	private void Awake()
 	{
-		rb = this.GetComponent<Rigidbody2D>();
+		rb       = this.GetComponent<Rigidbody2D>();
+		parentRb = transform.parent.GetComponent<Rigidbody2D>();
 	}
 
 	private void FixedUpdate()
@@ -21,7 +23,15 @@ public class PaulHands : MonoBehaviour
 		{
 			Vector3 delta = grabTarget.position - transform.position;
 			float   angle = Mathf.Atan2( delta.x, -delta.y ) * Mathf.Rad2Deg;
-			rb.MoveRotation( Mathf.LerpAngle(rb.rotation, angle, force * Time.deltaTime) );
+			/*rb.MoveRotation( Mathf.LerpAngle(rb.rotation, angle, force * Time.deltaTime) );
+
+
+			if(parentRb)
+				parentRb.MoveRotation( Mathf.LerpAngle(parentRb.rotation, angle, force * Time.deltaTime) );
+
+
+			rb.MovePosition( grabTarget.position );*/
+
 		}
 	}
 }

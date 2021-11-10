@@ -39,10 +39,4 @@ public class Ball : MonoBehaviour
 		}
 		else { rb.AddForce( Force, ForceMode2D.Impulse ); }
 	}
-
-	public void ChangeVelocity( float angle )
-	{
-		rb.SetRotation( rb.rotation - angle );
-		rb.velocity = rb.velocity.Rotate( angle );
-	}
 }
