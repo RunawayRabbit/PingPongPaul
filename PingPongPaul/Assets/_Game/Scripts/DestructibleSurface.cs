@@ -5,7 +5,19 @@ public class DestructibleSurface : MonoBehaviour
 {
 	private static readonly List<DestructibleSurface> allDestructibleSurfaces = new List<DestructibleSurface>();
 
-	private void OnDisable() { allDestructibleSurfaces.Add( this ); }
+	[SerializeField] private int numberOfHits = 1;
+
+	private int currentNumberOfHits;
+	private void Awake()
+	{
+		currentNumberOfHits = numberOfHits;
+	}
+
+	private void OnDisable()
+	{
+		allDestructibleSurfaces.Add( this );
+		currentNumberOfHits = numberOfHits;
+	}
 
 
 	public static void ResetAllDestructibleSurfaces()
@@ -17,6 +29,10 @@ public class DestructibleSurface : MonoBehaviour
 
 	private void OnCollisionEnter2D( Collision2D other )
 	{
-		if( other.gameObject.layer == LayerMask.NameToLayer( "Ball" ) ) { gameObject.SetActive( false ); }
+		if( other.gameObject.layer == LayerMask.NameToLayer( "Ball" ) )
+		{
+			if(--currentNumberOfHits == 0)
+				gameObject.SetActive( false );
+		}
 	}
 }

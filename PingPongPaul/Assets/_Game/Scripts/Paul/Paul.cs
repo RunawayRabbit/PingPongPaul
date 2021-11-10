@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
-public class PaulHands : MonoBehaviour
+public class Paul : MonoBehaviour
 {
 	private Rigidbody2D rb;
 	private Rigidbody2D parentRb;

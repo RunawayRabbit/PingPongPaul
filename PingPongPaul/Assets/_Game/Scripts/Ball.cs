@@ -13,7 +13,7 @@ public class Ball : MonoBehaviour
 	[SerializeField] private float maxForce = 14.0f;
 	[SerializeField] private bool randomRotation = false;
 
-	[SerializeField] private bool paulIsAttached = true;
+	private bool paulIsAttached = false;
 
 	private Rigidbody2D rb;
 	private float radius;
@@ -37,6 +37,18 @@ public class Ball : MonoBehaviour
 								   transform.TransformPoint( Random.OnUnitCircle * radius ),
 								   ForceMode2D.Impulse );
 		}
-		else { rb.AddForce( Force, ForceMode2D.Impulse ); }
+		else
+		{
+			Debug.DrawRay(transform.position, Direction, Color.cyan, 10.0f);
+			rb.AddForce( Force, ForceMode2D.Impulse );
+		}
+	}
+
+	private void OnCollisionEnter2D( Collision2D other )
+	{
+		if( other.gameObject.layer == LayerMask.NameToLayer( "Paul" ) )
+		{
+			var paul = other.gameObject.GetComponentInParent( typeof(Paul) );
+		}
 	}
 }
