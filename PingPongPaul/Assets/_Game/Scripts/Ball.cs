@@ -1,3 +1,4 @@
+using Freya;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -36,5 +37,11 @@ public class Ball : MonoBehaviour
 								   ForceMode2D.Impulse );
 		}
 		else { rb.AddForce( Force, ForceMode2D.Impulse ); }
+	}
+
+	public void ChangeVelocity( float angle )
+	{
+		rb.SetRotation( rb.rotation - angle );
+		rb.velocity = rb.velocity.Rotate( angle );
 	}
 }
