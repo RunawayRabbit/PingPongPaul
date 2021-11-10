@@ -8,12 +8,13 @@ public class PC_Reset : MonoBehaviour {
         startPosition = ball.transform.position;
     }
 
-    // Update is called once per frame
+    // Update is called once per frame. This means it will check it once every frame.
     void Update() {
         if (Input.GetKeyDown(KeyCode.R) == true) {
             ball.transform.position = startPosition;
             ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             ball.GetComponent<Rigidbody2D>().angularVelocity = 0f;
+            DestructibleSurface.ResetAllDestructibleSurfaces();
         }
     }
 }
