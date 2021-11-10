@@ -2,6 +2,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UI_VelocityProgress : MonoBehaviour {
+    [SerializeField] private RectTransform rectTransform;
+    [SerializeField] private Transform ballTransform;
+
+    new private Camera camera;
+
     [SerializeField] private GameObject canvas;
     [SerializeField] private GameObject parent;
     [SerializeField] private Slider slider;
@@ -25,41 +30,45 @@ public class UI_VelocityProgress : MonoBehaviour {
             parent = gameObject;
         }
 
-        Vector3 screenPoint = Input.mousePosition;
-        parent.transform.position = screenPoint;
+        if (rectTransform == null) {
+            rectTransform = GetComponent<RectTransform>();
+        }
+
+        camera = Camera.main;
 
         direction = Vector3.forward;
     }
 
-    void Update()
-    {
+    public void SetPosition(Transform transformToFollow) {
+        ballTransform = transformToFollow;
+    }
+
+    void Update() {
 
         if (Input.GetKey(KeyCode.Mouse0) == true) {
+            rectTransform.position = Camera.main.WorldToScreenPoint(ballTransform.position);
 
             direction = Input.mousePosition - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
-            GetComponent<RectTransform>().rotation = rotation;
-
+            rectTransform.rotation = rotation;
 
             distance = Vector3.Distance(Input.mousePosition, transform.position);
 
             alpha = Mathf.Lerp(0, 1, Mathf.Clamp(distance, 0, sliderLength) / sliderLength);
             slider.value = alpha;
-            //Destroy(canvas);
 
-            Time.timeScale      = 0.05f;
-            Time.fixedDeltaTime = Time.timeScale* 0.02f;
+            Time.timeScale = 0.05f;
+            Time.fixedDeltaTime = Time.timeScale * 0.02f;
         }
 
         if (Input.GetKeyUp(KeyCode.Mouse0)) {
-            Destroy(canvas);
             Ball.ShootBall.Invoke(direction, alpha);
 
-            Time.timeScale      = 1.0f;
-            Time.fixedDeltaTime = Time.timeScale* 0.02f;
+            Time.timeScale = 1.0f;
+            Time.fixedDeltaTime = Time.timeScale * 0.02f;
+
+            Destroy(canvas);
         }
     }
 

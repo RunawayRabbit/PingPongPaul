@@ -6,8 +6,6 @@ public class BluePortal : MonoBehaviour {
 
     [SerializeField] private new BoxCollider2D collider;
     [SerializeField] private Vector2 normal;
-    public static Vector2 HitDirection;
-    public static Vector2 OutDirection;
 
     [SerializeField] private bool canTeleport;
 
@@ -25,7 +23,6 @@ public class BluePortal : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        print("Hello from Blueportal");
         if (canTeleport == true && OrangePortal.orangePortal != null) {
             GameObject paul = other.gameObject;
             Rigidbody2D rigidbody = paul.GetComponent<Rigidbody2D>();

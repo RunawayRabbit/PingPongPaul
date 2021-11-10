@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 7018137404377291174}
   - component: {fileID: 7846393655584728886}
   m_Layer: 0
-  m_Name: Canvas_VelocityProgress
+  m_Name: UI_VelocityProgress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

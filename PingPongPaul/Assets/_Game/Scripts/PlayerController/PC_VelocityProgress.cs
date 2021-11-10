@@ -12,6 +12,7 @@ public class PC_VelocityProgress : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Mouse0) == true) {
             if (instanced_ui_velocityProgress == null) {
                 instanced_ui_velocityProgress = GameObject.Instantiate(UI_VelocityProgress);
+                instanced_ui_velocityProgress.GetComponentInChildren<UI_VelocityProgress>().SetPosition(transform);
             }
 
         }
