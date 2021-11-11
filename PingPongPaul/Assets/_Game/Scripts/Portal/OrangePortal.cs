@@ -4,10 +4,10 @@ public class OrangePortal : MonoBehaviour {
 
     public static OrangePortal orangePortal;
 
-    [SerializeField] private new BoxCollider2D collider;
     [SerializeField] private Vector2 normal;
 
     [SerializeField] private bool canTeleport;
+    [SerializeField] private bool canBeReset = true;
 
     void Start() {
         if (orangePortal != null) {
@@ -50,6 +50,12 @@ public class OrangePortal : MonoBehaviour {
 
     public void CanTeleport(bool newActive) {
         canTeleport = newActive;
+    }
+
+    public void ResetPortal() {
+        if (canBeReset == true) {
+            Destroy(orangePortal.gameObject);
+        }
     }
 
 }

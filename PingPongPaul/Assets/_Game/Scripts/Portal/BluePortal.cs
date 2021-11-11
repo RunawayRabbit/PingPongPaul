@@ -4,17 +4,16 @@ public class BluePortal : MonoBehaviour {
 
     public static BluePortal bluePortal;
 
-    [SerializeField] private new BoxCollider2D collider;
     [SerializeField] private Vector2 normal;
 
     [SerializeField] private bool canTeleport;
+    [SerializeField] private bool canBeReset = true;
 
     void Start() {
         if (bluePortal != null) {
             Destroy(bluePortal.gameObject);
         }
         bluePortal = this;
-
         canTeleport = true;
     }
 
@@ -48,6 +47,12 @@ public class BluePortal : MonoBehaviour {
 
     public void CanTeleport(bool newActive) {
         canTeleport = newActive;
+    }
+
+    public void ResetPortal() {
+        if (canBeReset == true) {
+            Destroy(bluePortal.gameObject);
+        }
     }
 
 }
