@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6539414873608371644, guid: 83cf0172e7fa7b4478ab593df7c2bc8f, type: 3}
+      propertyPath: prefabPath
+      value: Assets/_Game/Prefab/Larger Paul Variant.prefab
+      objectReference: {fileID: 0}
     - target: {fileID: 6683395602957056387, guid: 83cf0172e7fa7b4478ab593df7c2bc8f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -65,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6683395602957056391, guid: 83cf0172e7fa7b4478ab593df7c2bc8f, type: 3}
       propertyPath: m_Name
-      value: Larger Paul
+      value: Larger Paul Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6683395603218282892, guid: 83cf0172e7fa7b4478ab593df7c2bc8f, type: 3}
       propertyPath: m_ConnectedAnchor.x
