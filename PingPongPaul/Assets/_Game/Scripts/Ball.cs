@@ -9,6 +9,7 @@ using Random = Freya.Random;
 public class Ball : MonoBehaviour
 {
 	public static ShootBallEvent ShootBall;
+	public static Ball ball;
 	[SerializeField] private float maxForce = 14.0f;
 	[SerializeField] private float paulStickiness = 14.0f;
 	[SerializeField] private bool randomRotation = false;
@@ -28,7 +29,11 @@ public class Ball : MonoBehaviour
 		ShootBall.AddListener( OnShootBall );
 	}
 
-	public void OnShootBall( Vector2 Direction, float forcePercent )
+    public void Start() {
+		ball = this;
+    }
+
+    public void OnShootBall( Vector2 Direction, float forcePercent )
 	{
 		var Force = Direction.normalized * (maxForce * forcePercent);
 
