@@ -12,10 +12,11 @@ public class Ball : MonoBehaviour
 	public static Ball ball;
 	[SerializeField] private float maxForce = 14.0f;
 	[SerializeField] private float paulStickiness = 14.0f;
-	[SerializeField] private bool randomRotation = false;
+	[SerializeField] private float maxPaulDistance = 3.0f;
 
 	private RelativeJoint2D paulConnection;
 	private Paul connectedPaul;
+	private bool IsConnectedToPaul = false;
 
 	private Rigidbody2D rb;
 	private float radius;
@@ -34,25 +35,23 @@ public class Ball : MonoBehaviour
     }
 
     public void OnShootBall( Vector2 Direction, float forcePercent )
+	private void Update()
 	{
-		var Force = Direction.normalized * (maxForce * forcePercent);
+		if( IsConnectedToPaul && paulConnection.linearOffset.sqrMagnitude > maxPaulDistance * maxPaulDistance )
+		{
+			OnJointBreak2D( paulConnection );
+		}
+	}
 
-		if( randomRotation )
-		{
-			rb.AddForceAtPosition( Direction.normalized * (maxForce * forcePercent),
-								   transform.TransformPoint( Random.OnUnitCircle * radius ),
-								   ForceMode2D.Impulse );
-		}
-		else
-		{
-			rb.AddForce( Force, ForceMode2D.Impulse );
-		}
+	public void OnShootBall( Vector2 Direction, float forcePercent )
+	{
+		rb.AddForce( Direction.normalized * (maxForce * forcePercent), ForceMode2D.Impulse );
 	}
 
 	private void OnCollisionEnter2D( Collision2D other )
 	{
-		if( other.gameObject.layer == LayerMask.NameToLayer( "Paul" ) &&
-			connectedPaul == null)
+		if( other.gameObject.layer == LayerMask.NameToLayer( "Paul" )
+			&& connectedPaul == null )
 		{
 			connectedPaul = other.gameObject.GetComponentInParent<Paul>();
 			connectedPaul.BallHitPaul( gameObject );
@@ -60,9 +59,11 @@ public class Ball : MonoBehaviour
 			paulConnection               = gameObject.AddComponent<RelativeJoint2D>();
 			paulConnection.connectedBody = other.rigidbody;
 
-			paulConnection.maxForce      = paulStickiness;
-			paulConnection.breakForce = paulStickiness;
+			paulConnection.maxForce    = paulStickiness;
+			paulConnection.breakForce  = paulStickiness;
+			paulConnection.breakTorque = paulStickiness;
 
+			IsConnectedToPaul = true;
 		}
 	}
 
@@ -72,7 +73,8 @@ public class Ball : MonoBehaviour
 		{
 			Destroy( paulConnection );
 			connectedPaul.BallLeavesPaul( gameObject );
-			connectedPaul = null;
+			connectedPaul     = null;
+			IsConnectedToPaul = false;
 		}
 	}
 }
