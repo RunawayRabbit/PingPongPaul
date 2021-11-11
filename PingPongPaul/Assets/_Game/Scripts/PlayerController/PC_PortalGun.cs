@@ -11,8 +11,11 @@ public class PC_PortalGun : MonoBehaviour {
     [Header("Settings")]
     [SerializeField] private GameObject bluePortal;
     [SerializeField] private bool canShootBluePortal = true;
+    [SerializeField] private int numberOfBlueShots = -1;
+
     [SerializeField] private GameObject orangePortal;
     [SerializeField] private bool canShootOrangePortal = true;
+    [SerializeField] private int numberOfOrangeShots = -1;
 
     [SerializeField] private float portalGunDistance = 100f;
 
@@ -33,18 +36,28 @@ public class PC_PortalGun : MonoBehaviour {
         raycast = Physics2D.Raycast(transform.position, direction, portalGunDistance, wallLayermask);
 
         if (raycast) {
-            Vector3[] a = { position, raycast.point };
-            lineRenderer.SetPositions(a);
-            //Debug.DrawLine(position, raycast.point, Color.green);
+            Vector3[] lineToRender = { position, raycast.point };
+            lineRenderer.SetPositions(lineToRender);
+
             canShoot = true;
             angle = Mathf.Atan2(raycast.normal.y, raycast.normal.x) * Mathf.Rad2Deg;
 
             if (Input.GetKeyDown(KeyCode.Alpha1) == true && canShootBluePortal == true) {
-                ShootBluePortal();
+                if (numberOfBlueShots > 0) {
+                    numberOfBlueShots--;
+                }
+                if (numberOfBlueShots != 0) {
+                    ShootPortal(bluePortal);
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha2) == true && canShootOrangePortal == true) {
-                ShootOrangePortal();
+                if (numberOfOrangeShots > 0) {
+                    numberOfOrangeShots--;
+                }
+                if (numberOfOrangeShots != 0) {
+                    ShootPortal(orangePortal);
+                }
             }
         }
         else {
@@ -52,18 +65,17 @@ public class PC_PortalGun : MonoBehaviour {
         }
     }
 
-    public void ShootBluePortal() {
+    public void ShootPortal(GameObject prefab) {
         if (canShoot == true) {
-            BluePortal portal = Instantiate(bluePortal, raycast.point, Quaternion.AngleAxis(angle, Vector3.forward)).GetComponent<BluePortal>();
-            portal.SetPortalNormal(raycast.normal);
+            Instantiate(prefab, raycast.point, Quaternion.AngleAxis(angle, Vector3.forward));
         }
     }
 
-    public void ShootOrangePortal() {
-        if (canShoot == true) {
-            OrangePortal portal = Instantiate(orangePortal, raycast.point, Quaternion.AngleAxis(angle, Vector3.forward)).GetComponent<OrangePortal>();
-            portal.SetPortalNormal(raycast.normal);
-        }
+    public void ApplySettings(PortalSettings settings) {
+        canShootBluePortal = settings.CanShootBluePortal;
+        canShootOrangePortal = settings.CanShootOrangePortal;
+        numberOfBlueShots = settings.NumberOfBluePortalsAllowed;
+        numberOfOrangeShots = settings.NumberOfOrangePortalsAllowed;
     }
 
 }

@@ -1,13 +1,9 @@
 ﻿using UnityEngine;
 
-public class OrangePortal : MonoBehaviour {
+public class OrangePortal : PortalBase {
 
     public static OrangePortal orangePortal;
 
-    [SerializeField] private Vector2 normal;
-
-    [SerializeField] private bool canTeleport;
-    [SerializeField] private bool canBeReset = true;
 
     void Start() {
         if (orangePortal != null) {
@@ -19,43 +15,22 @@ public class OrangePortal : MonoBehaviour {
     }
 
 
-    public void SetPortalNormal(Vector2 normal) {
-        this.normal = normal;
-    }
-
     private void OnTriggerEnter2D(Collider2D other) {
-        if (canTeleport == true && BluePortal.bluePortal != null) {
-            GameObject paul = other.gameObject;
-            Rigidbody2D rigidbody = paul.GetComponent<Rigidbody2D>();
-
-            Vector3 inPosition = transform.InverseTransformPoint(paul.transform.position);
-            inPosition = -inPosition;
-            Vector3 outPosition = BluePortal.bluePortal.transform.TransformPoint(inPosition);
-
-            Vector3 inDirection = transform.InverseTransformDirection(rigidbody.velocity);
-            Vector3 outDirection = BluePortal.bluePortal.transform.TransformDirection(inDirection);
-
-            paul.transform.position = outPosition;
-            rigidbody.velocity = -outDirection;
-
-            BluePortal.bluePortal.CanTeleport(false);
-            canTeleport = false;
+        BluePortal bluePortal = BluePortal.bluePortal;
+        if (canTeleport == true && bluePortal != null) {
+            CalculateExitPosition(bluePortal, other.gameObject);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
         canTeleport = true;
-
     }
 
-    public void CanTeleport(bool newActive) {
-        canTeleport = newActive;
+    protected override void OnReset() {
+        Destroy(orangePortal.gameObject);
     }
 
-    public void ResetPortal() {
-        if (canBeReset == true) {
-            Destroy(orangePortal.gameObject);
-        }
+    public override void ApplySettings(PortalSettings settings) {
+        canBeReset = settings.CanOrangePortalReset;
     }
-
 }

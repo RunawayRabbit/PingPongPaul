@@ -15,9 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/HelgeTestLevel2.unity
     guid: cee07affd590a774789502ab223a6f1d
   - enabled: 1
-    path: Assets/Scenes/PaulKillsHimselfAfterDance(don'tChange).unity
-    guid: 7ba8713e0d6f16540a009c13559ad246
-  - enabled: 1
     path: Assets/Scenes/Mockups/PortalJump_Mike.unity
     guid: 1ebfe35382fddec47b682c8404225c7d
+  - enabled: 1
+    path: Assets/Scenes/PaulKillsHimselfAfterDance(don'tChange).unity
+    guid: 7ba8713e0d6f16540a009c13559ad246
   m_configObjects: {}

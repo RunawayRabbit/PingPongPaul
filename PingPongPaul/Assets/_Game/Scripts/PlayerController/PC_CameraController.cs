@@ -14,9 +14,10 @@ public class PC_CameraController : MonoBehaviour {
     [SerializeField] private float maxZoomValue = 7.0f;
     [SerializeField] private float zoomSpeed = 4.0f;
 
+    [SerializeField] private float cameraDistance = 5.5f;
+
     [Header("Debug")]
     [SerializeField] private Vector2 moveVelocity;
-    [SerializeField] private float cameraDistance = 5.5f;
 
     void Update() {
         float deltaTime = Time.unscaledDeltaTime;
@@ -47,5 +48,17 @@ public class PC_CameraController : MonoBehaviour {
         position += moveVelocity * deltaTime;
 
         transform.position = position;
+    }
+
+    public void ApplySettings(CameraSettings cameraSettings) {
+        minZoomValue = cameraSettings.minZoomValue;
+        maxZoomValue = cameraSettings.maxZoomValue;
+        cameraDistance = Mathf.Clamp(cameraSettings.startZoomValue, minZoomValue, maxZoomValue);
+        camera.orthographicSize = cameraDistance;
+    }
+
+    private void OnValidate() {
+        cameraDistance = Mathf.Clamp(cameraDistance, minZoomValue, maxZoomValue);
+        camera.orthographicSize = cameraDistance;
     }
 }

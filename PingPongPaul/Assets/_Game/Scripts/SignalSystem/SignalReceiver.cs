@@ -1,39 +1,28 @@
-
 using UnityEngine;
 
 public class SignalReceiver : MonoBehaviour
 {
+    [Header("Settings")]
+    [SerializeField] private SignalReceiverComponent[] receiverComponents;
 
+    [Header("Debug")]
     [SerializeField] private bool isActive;
-
-    [SerializeField] private ReceiverAnimation animation;
-
-    [SerializeField] private bool testAnimation;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private bool forceSignal;
 
     public void ReceiveSignal() {
         isActive = !isActive;
 
-        if (animation != null) {
-            animation.StartAnimation();
+        if (receiverComponents != null) {
+            foreach (SignalReceiverComponent src in receiverComponents) {
+                src.Interact();
+            }
         }
     }
 
     private void OnValidate() {
-        if (testAnimation == true) {
+        if (forceSignal == true) {
             ReceiveSignal();
-            testAnimation = false;
+            forceSignal = false;
         }
     }
 

@@ -86,4 +86,15 @@ public class Ball : MonoBehaviour
 			IsConnectedToPaul = false;
 		}
 	}
+
+
+	public void ApplySettings(BallSettings settings) {
+		maxForce = settings.MaxForce;
+		paulStickiness = settings.PaulStickiness;
+		maxPaulDistance = settings.MaxPaulDistance;
+		rb.mass = settings.ballMass;
+		rb.drag = settings.linearDrag;
+		rb.angularDrag = settings.angularDrag;
+	}
+
 }

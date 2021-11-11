@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
 
-public class ReceiverAnimation : MonoBehaviour {
+public class Receiver_AnimationComponent : SignalReceiverComponent {
 
-    [SerializeField] private Vector3 startPosition;
+    private Vector3 startPosition;
+    [Header("Settings")]
     [SerializeField] private Vector3 endPosition;
+    [SerializeField] private float animationTime = 0.5f;
 
-    [SerializeField] float animationTime = 0.5f;
-    [SerializeField] float currentTime;
-    [SerializeField] bool isForwardAnimation = false;
-
-    bool isAnimating;
-
+    [Header("Debug")]
+    [SerializeField] private float currentTime;
+    [SerializeField] private bool isForwardAnimation = false;
+    [SerializeField] private bool isAnimating;
+    
     private void Start() {
         startPosition = transform.position;
     }
@@ -24,6 +25,10 @@ public class ReceiverAnimation : MonoBehaviour {
                 AnimateBackwards();
             }
         }
+    }
+
+    public override void Interact() {
+        StartAnimation();
     }
 
     public void StartAnimation() {

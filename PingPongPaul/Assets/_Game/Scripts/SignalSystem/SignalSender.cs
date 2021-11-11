@@ -1,19 +1,16 @@
-
 using UnityEngine;
 
 public class SignalSender : MonoBehaviour {
-
+    [Header("Settings")]
     [SerializeField] private SignalReceiver[] receivers;
+    [SerializeField] private bool onlyActivateOnce = false;
 
+    [Header("Debug")]
+    [SerializeField] private bool forceSendSignal;
     [SerializeField] private bool canActivate;
     [SerializeField] private float timer;
     [SerializeField] private float time = 0.2f;
-    // Start is called before the first frame update
-    void Start() {
 
-    }
-
-    // Update is called once per frame
     void Update() {
         if (canActivate == false) {
             timer -= Time.deltaTime;
@@ -30,7 +27,21 @@ public class SignalSender : MonoBehaviour {
             foreach (SignalReceiver signalReceiver in receivers) {
                 signalReceiver.ReceiveSignal();
             }
+
             canActivate = false;
+
+            if (onlyActivateOnce == true) {
+                gameObject.SetActive(false);
+            }
+        }
+    }
+
+    private void OnValidate() {
+        if (forceSendSignal == true) {
+            foreach (SignalReceiver signalReceiver in receivers) {
+                signalReceiver.ReceiveSignal();
+            }
+            forceSendSignal = false;
         }
     }
 }
