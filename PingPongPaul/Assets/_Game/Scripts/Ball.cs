@@ -1,4 +1,3 @@
-using Freya;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = Freya.Random;
@@ -13,7 +12,7 @@ public class Ball : MonoBehaviour
 	[SerializeField] private float maxForce = 14.0f;
 	[SerializeField] private bool randomRotation = false;
 
-	private bool paulIsAttached = false;
+	private FixedJoint2D paulConnection;
 
 	private Rigidbody2D rb;
 	private float radius;
@@ -47,7 +46,18 @@ public class Ball : MonoBehaviour
 	{
 		if( other.gameObject.layer == LayerMask.NameToLayer( "Paul" ) )
 		{
-			var paul = other.gameObject.GetComponentInParent( typeof(Paul) );
+			var paul = other.gameObject.GetComponentInParent<Paul>();
+			paul.BallHitPaul( gameObject );
+
+			paulConnection               = gameObject.AddComponent<FixedJoint2D>();
+			paulConnection.anchor        = other.GetContact( 0 ).point;
+			paulConnection.connectedBody = other.otherRigidbody;
+
 		}
+	}
+
+	private void OnJointBreak2D( Joint2D brokenJoint )
+	{
+
 	}
 }

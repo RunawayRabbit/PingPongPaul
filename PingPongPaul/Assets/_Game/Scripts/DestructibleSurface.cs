@@ -16,7 +16,6 @@ public class DestructibleSurface : MonoBehaviour {
         currentNumberOfHits = numberOfHits;
     }
 
-
     public static void ResetAllDestructibleSurfaces() {
         foreach (var surface in allDestructibleSurfaces) {
             if (surface != null) {
@@ -25,6 +24,7 @@ public class DestructibleSurface : MonoBehaviour {
         }
         allDestructibleSurfaces.Clear();
     }
+
 
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.layer == LayerMask.NameToLayer("Ball")) {

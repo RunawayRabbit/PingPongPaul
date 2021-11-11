@@ -14,6 +14,6 @@ public class PaulBalance : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		rb.MoveRotation( Mathf.LerpAngle(rb.rotation, targetAngle, strength * Time.deltaTime ));
+		rb.MoveRotation( Mathf.LerpAngle(rb.rotation, targetAngle, strength * Time.fixedDeltaTime ));
 	}
 }

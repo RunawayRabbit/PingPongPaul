@@ -1,36 +1,41 @@
-
+using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Paul : MonoBehaviour
 {
-	private Rigidbody2D rb;
-	private Rigidbody2D parentRb;
+	private static List<Paul> allPauls = new List<Paul>();
+	private static string paulPrefabPath = "Assets/_Game/Prefab/Paul.prefab";
 
-	[SerializeField] private bool isGrabbing = false;
-	[SerializeField] private Transform grabTarget;
-	[SerializeField] private float force;
+	private Vector3 startingPosition;
 
 	private void Awake()
 	{
-		rb       = this.GetComponent<Rigidbody2D>();
-		parentRb = transform.parent.GetComponent<Rigidbody2D>();
+		startingPosition = transform.position;
 	}
 
-	private void FixedUpdate()
+	private void OnEnable() { allPauls.Add( this ); }
+
+	private void OnDisable() { allPauls.Remove( this ); }
+
+	private void Reset()
 	{
-		if( isGrabbing && grabTarget )
+		Instantiate( gameObject, startingPosition, Quaternion.identity );
+		Destroy( gameObject, 0.001f );
+	}
+
+	public static void ResetAllPauls()
+	{
+		var paulPrefab = PrefabUtility.LoadPrefabContents( paulPrefabPath );
+		foreach( var paul in allPauls.ToArray() )
 		{
-			Vector3 delta = grabTarget.position - transform.position;
-			float   angle = Mathf.Atan2( delta.x, -delta.y ) * Mathf.Rad2Deg;
-			/*rb.MoveRotation( Mathf.LerpAngle(rb.rotation, angle, force * Time.deltaTime) );
-
-
-			if(parentRb)
-				parentRb.MoveRotation( Mathf.LerpAngle(parentRb.rotation, angle, force * Time.deltaTime) );
-
-
-			rb.MovePosition( grabTarget.position );*/
-
+			Instantiate( paulPrefab, paul.startingPosition, Quaternion.identity );
+			Destroy( paul.gameObject );
 		}
+	}
+
+	public void BallHitPaul( GameObject ball )
+	{
+
 	}
 }

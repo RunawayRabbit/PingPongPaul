@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6683395602957056385}
   - component: {fileID: 6683395602957056384}
   - component: {fileID: 1489483489000640519}
+  - component: {fileID: 6539414873608371644}
   m_Layer: 7
   m_Name: Paul
   m_TagString: Untagged
@@ -151,6 +152,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strength: 100
   targetAngle: 0
+--- !u!114 &6539414873608371644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6683395602957056391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c12d00c397d40ee4c902f7b87e418fee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PaulPrefab: {fileID: 6683395602957056391}
 --- !u!1 &6683395603218282898
 GameObject:
   m_ObjectHideFlags: 0
