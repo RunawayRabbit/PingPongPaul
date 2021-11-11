@@ -9,9 +9,12 @@ public class Paul : MonoBehaviour
 
 	private Vector3 startingPosition;
 
+	private List<PaulBalance> balances;
+
 	private void Awake()
 	{
 		startingPosition = transform.position;
+		balances         = new List<PaulBalance>(this.GetComponentsInChildren<PaulBalance>());
 	}
 
 	private void OnEnable() { allPauls.Add( this ); }
@@ -36,6 +39,21 @@ public class Paul : MonoBehaviour
 
 	public void BallHitPaul( GameObject ball )
 	{
+		print( "Ow!" );
 
+		foreach( var balancer in balances )
+		{
+			balancer.enabled = false;
+		}
+	}
+
+	public void BallLeavesPaul( GameObject ball )
+	{
+		print( "Thank god I'm not connected to a ball anymore" );
+
+		foreach( var balancer in balances )
+		{
+			balancer.enabled = true;
+		}
 	}
 }

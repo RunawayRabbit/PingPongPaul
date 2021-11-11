@@ -1,3 +1,4 @@
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = Freya.Random;
@@ -10,9 +11,11 @@ public class Ball : MonoBehaviour
 {
 	public static ShootBallEvent ShootBall;
 	[SerializeField] private float maxForce = 14.0f;
+	[SerializeField] private float paulStickiness = 14.0f;
 	[SerializeField] private bool randomRotation = false;
 
-	private FixedJoint2D paulConnection;
+	private RelativeJoint2D paulConnection;
+	private Paul connectedPaul;
 
 	private Rigidbody2D rb;
 	private float radius;
@@ -44,20 +47,28 @@ public class Ball : MonoBehaviour
 
 	private void OnCollisionEnter2D( Collision2D other )
 	{
-		if( other.gameObject.layer == LayerMask.NameToLayer( "Paul" ) )
+		if( other.gameObject.layer == LayerMask.NameToLayer( "Paul" ) &&
+			connectedPaul == null)
 		{
-			var paul = other.gameObject.GetComponentInParent<Paul>();
-			paul.BallHitPaul( gameObject );
+			connectedPaul = other.gameObject.GetComponentInParent<Paul>();
+			connectedPaul.BallHitPaul( gameObject );
 
-			paulConnection               = gameObject.AddComponent<FixedJoint2D>();
-			paulConnection.anchor        = other.GetContact( 0 ).point;
-			paulConnection.connectedBody = other.otherRigidbody;
+			paulConnection               = gameObject.AddComponent<RelativeJoint2D>();
+			paulConnection.connectedBody = other.rigidbody;
+
+			paulConnection.maxForce      = paulStickiness;
+			paulConnection.breakForce = paulStickiness;
 
 		}
 	}
 
 	private void OnJointBreak2D( Joint2D brokenJoint )
 	{
-
+		if( brokenJoint == paulConnection )
+		{
+			Destroy( paulConnection );
+			connectedPaul.BallLeavesPaul( gameObject );
+			connectedPaul = null;
+		}
 	}
 }
