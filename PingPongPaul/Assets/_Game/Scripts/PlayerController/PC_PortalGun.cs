@@ -3,6 +3,8 @@ using UnityEngine;
 public class PC_PortalGun : MonoBehaviour {
     public static PC_PortalGun pc_portalGun;
 
+    [Header("References")]
+    [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private LayerMask wallLayermask;
     [SerializeField] private LayerMask layermaskPortal;
 
@@ -20,6 +22,9 @@ public class PC_PortalGun : MonoBehaviour {
 
     private void Start() {
         pc_portalGun = this;
+        if (lineRenderer == null) {
+            lineRenderer = GetComponent<LineRenderer>();
+        }
     }
 
     void Update() {
@@ -28,7 +33,9 @@ public class PC_PortalGun : MonoBehaviour {
         raycast = Physics2D.Raycast(transform.position, direction, portalGunDistance, wallLayermask);
 
         if (raycast) {
-            Debug.DrawLine(position, raycast.point, Color.green);
+            Vector3[] a = { position, raycast.point };
+            lineRenderer.SetPositions(a);
+            //Debug.DrawLine(position, raycast.point, Color.green);
             canShoot = true;
             angle = Mathf.Atan2(raycast.normal.y, raycast.normal.x) * Mathf.Rad2Deg;
 
