@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Events;
-using Random = Freya.Random;
 
 [System.Serializable] public class ShootBallEvent : UnityEvent<Vector2, float> { }
 
@@ -17,6 +16,8 @@ public class Ball : MonoBehaviour
 	private RelativeJoint2D paulConnection;
 	private Paul connectedPaul;
 	private bool IsConnectedToPaul = false;
+
+	[SerializeField] private bool stopBeforeShooty = false;
 
 	private Rigidbody2D rb;
 	private float radius;
@@ -40,11 +41,19 @@ public class Ball : MonoBehaviour
 		{
 			OnJointBreak2D( paulConnection );
 		}
+
+		if( Input.GetKeyDown( KeyCode.V ) )
+		{
+			stopBeforeShooty = !stopBeforeShooty;
+			print( "Stop Before Shooty: " + stopBeforeShooty );
+		}
 	}
 
 	public void OnShootBall( Vector2 Direction, float forcePercent )
 	{
-		rb.velocity = Vector2.zero;
+		if(stopBeforeShooty)
+			rb.velocity = Vector2.zero;
+
 		rb.AddForce( Direction.normalized * (maxForce * forcePercent), ForceMode2D.Impulse );
 	}
 
