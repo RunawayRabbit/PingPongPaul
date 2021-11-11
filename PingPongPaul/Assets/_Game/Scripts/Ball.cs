@@ -34,7 +34,6 @@ public class Ball : MonoBehaviour
 		ball = this;
     }
 
-    public void OnShootBall( Vector2 Direction, float forcePercent )
 	private void Update()
 	{
 		if( IsConnectedToPaul && paulConnection.linearOffset.sqrMagnitude > maxPaulDistance * maxPaulDistance )
@@ -45,6 +44,7 @@ public class Ball : MonoBehaviour
 
 	public void OnShootBall( Vector2 Direction, float forcePercent )
 	{
+		rb.velocity = Vector2.zero;
 		rb.AddForce( Direction.normalized * (maxForce * forcePercent), ForceMode2D.Impulse );
 	}
 

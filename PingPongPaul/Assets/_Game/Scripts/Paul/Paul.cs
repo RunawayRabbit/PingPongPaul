@@ -42,8 +42,15 @@ public class Paul : MonoBehaviour
 		transform.rotation = cachedRotations[0];
 		for( var i = 1; i < transform.childCount; ++i )
 		{
-			transform.GetChild( i ).position = cachedPositions[i];
-			transform.GetChild( i ).rotation = cachedRotations[i];
+			var part = transform.GetChild( i ).gameObject;
+			part.transform.position = cachedPositions[i];
+			part.transform.rotation = cachedRotations[i];
+
+			if( part.TryGetComponent<Rigidbody2D>( out Rigidbody2D partRb ) )
+			{
+				partRb.velocity        = Vector2.zero;
+				partRb.angularVelocity = 0;
+			}
 		}
 	}
 
