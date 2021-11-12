@@ -25,10 +25,11 @@ public class LevelInstance : MonoBehaviour {
     [SerializeField] private bool canShootOrangePortal = true;
     [SerializeField] private int numberOfOrangePortalsAllowed = -1;
 
+    [SerializeField] private PortalVisualizationStyle portalVisualization;
+
     [Space]
     [SerializeField] private bool canBluePortalReset = true;
     [SerializeField] private bool canOrangePortalReset = true;
-
 
     [Header("Win Condition Settings")]
     [SerializeField] private int maxShots = 3;
@@ -93,28 +94,29 @@ public class LevelInstance : MonoBehaviour {
         return cameraSettings;
     }
 
-
     private BallSettings GetBallSettings() {
         BallSettings settings;
-        settings.MaxForce = levelData.MaxForce;
-        settings.PaulStickiness = levelData.PaulStickiness;
-        settings.MaxPaulDistance = levelData.MaxPaulDistance;
-        settings.ballMass = levelData.ballMass;
-        settings.linearDrag = levelData.linearDrag;
-        settings.angularDrag = levelData.angularDrag;
+        settings.MaxForce            = levelData.MaxForce;
+        settings.PaulStickiness      = levelData.PaulStickiness;
+        settings.MaxPaulDistance     = levelData.MaxPaulDistance;
+        settings.ballMass            = levelData.ballMass;
+        settings.linearDrag          = levelData.linearDrag;
+        settings.angularDrag         = levelData.angularDrag;
         settings.stopVelocityOnShoot = cancelVelocityOnShoot;
-        settings.maxShots = maxShots;
+        settings.maxShots            = maxShots;
+
         return settings;
     }
 
     private PortalSettings GetPortalSettings() {
         PortalSettings settings;
-        settings.CanBluePortalReset = canBluePortalReset;
-        settings.CanShootBluePortal = canShootBluePortal;
-        settings.CanOrangePortalReset = canOrangePortalReset;
-        settings.CanShootOrangePortal = canShootOrangePortal;
-        settings.NumberOfBluePortalsAllowed = numberOfBluePortalsAllowed;
+        settings.CanBluePortalReset           = canBluePortalReset;
+        settings.CanShootBluePortal           = canShootBluePortal;
+        settings.CanOrangePortalReset         = canOrangePortalReset;
+        settings.CanShootOrangePortal         = canShootOrangePortal;
+        settings.NumberOfBluePortalsAllowed   = numberOfBluePortalsAllowed;
         settings.NumberOfOrangePortalsAllowed = numberOfOrangePortalsAllowed;
+        settings.visualizationStyle           = portalVisualization;
         return settings;
     }
 }

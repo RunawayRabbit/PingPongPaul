@@ -5,4 +5,5 @@ public struct PortalSettings {
     public bool CanOrangePortalReset;
     public int NumberOfBluePortalsAllowed;
     public int NumberOfOrangePortalsAllowed;
+    public PortalVisualizationStyle visualizationStyle;
 }
