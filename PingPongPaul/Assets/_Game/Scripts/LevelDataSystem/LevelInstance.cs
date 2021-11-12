@@ -16,6 +16,9 @@ public class LevelInstance : MonoBehaviour {
     [Header("Physics Settings")]
     [SerializeField] private float gravity = -9.81f;
 
+    [Header("Ball Settings")]
+    [SerializeField] private bool cancelVelocityOnShoot = true;
+
     [Header("Portal Settings")]
     [SerializeField] private bool canShootBluePortal = true;
     [SerializeField] private int numberOfBluePortalsAllowed = -1;
@@ -28,7 +31,7 @@ public class LevelInstance : MonoBehaviour {
 
 
     [Header("Win Condition Settings")]
-    [SerializeField] private int maxShoots = 3;
+    [SerializeField] private int maxShots = 3;
     [Space]
     [SerializeField] private int threeStar = 1;
     [SerializeField] private int twoStar = 2;
@@ -58,7 +61,9 @@ public class LevelInstance : MonoBehaviour {
         cameraController.ApplySettings(GetCameraSettings());
         ball.ApplySettings(GetBallSettings());
         ApplyPortalSettings();
+        PC_VelocityProgress.pc_velocityProgress.ApplySettings(GetBallSettings());
         Physics2D.gravity = new Vector2(0.0f, gravity);
+
     }
 
     private void OnValidate() {
@@ -97,7 +102,8 @@ public class LevelInstance : MonoBehaviour {
         settings.ballMass = levelData.ballMass;
         settings.linearDrag = levelData.linearDrag;
         settings.angularDrag = levelData.angularDrag;
-
+        settings.stopVelocityOnShoot = cancelVelocityOnShoot;
+        settings.maxShots = maxShots;
         return settings;
     }
 

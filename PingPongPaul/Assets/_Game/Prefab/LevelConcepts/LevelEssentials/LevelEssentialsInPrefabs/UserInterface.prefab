@@ -2372,6 +2372,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f20c4fa9092aec499fa144236e567be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shotsLeftText: {fileID: 7299557063909107175}
+  maxShotsText: {fileID: 3507138902894972428}
   pc_cameraController: {fileID: 0}
 --- !u!1 &7568411585733695633
 GameObject:

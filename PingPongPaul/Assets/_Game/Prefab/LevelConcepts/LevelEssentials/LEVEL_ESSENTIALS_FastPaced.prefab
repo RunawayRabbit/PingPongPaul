@@ -53,8 +53,12 @@ MonoBehaviour:
   bluePortal: {fileID: 0}
   orangePortal: {fileID: 0}
   gravity: -9.81
+  cancelVelocityOnShoot: 1
+  maxShots: 3
   canShootBluePortal: 1
+  numberOfBluePortalsAllowed: -1
   canShootOrangePortal: 1
+  numberOfOrangePortalsAllowed: -1
   canBluePortalReset: 1
   canOrangePortalReset: 1
   maxShoots: 3

@@ -28,6 +28,7 @@ public class PC_Reset : MonoBehaviour {
         Paul.ResetAllPauls();
         Resettable.ResetAll();
         LevelInstance.levelInstance.ResetValues();
+        PC_VelocityProgress.pc_velocityProgress.ResetShots();
     }
 
 }

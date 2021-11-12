@@ -43,20 +43,16 @@ public class PC_PortalGun : MonoBehaviour {
             angle = Mathf.Atan2(raycast.normal.y, raycast.normal.x) * Mathf.Rad2Deg;
 
             if (Input.GetKeyDown(KeyCode.Alpha1) == true && canShootBluePortal == true) {
-                if (numberOfBlueShots > 0) {
-                    numberOfBlueShots--;
-                }
                 if (numberOfBlueShots != 0) {
                     ShootPortal(bluePortal);
+                    numberOfBlueShots--;
                 }
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha2) == true && canShootOrangePortal == true) {
-                if (numberOfOrangeShots > 0) {
-                    numberOfOrangeShots--;
-                }
                 if (numberOfOrangeShots != 0) {
                     ShootPortal(orangePortal);
+                    numberOfOrangeShots--;
                 }
             }
         }

@@ -68,7 +68,9 @@ public class UI_VelocityProgress : MonoBehaviour {
             Time.timeScale = 1.0f;
             Time.fixedDeltaTime = Time.timeScale * 0.02f;
 
+            PC_VelocityProgress.pc_velocityProgress.Shoot();
             Destroy(canvas);
+
         }
     }
 

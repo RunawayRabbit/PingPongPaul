@@ -95,6 +95,7 @@ public class Ball : MonoBehaviour
 		rb.mass = settings.ballMass;
 		rb.drag = settings.linearDrag;
 		rb.angularDrag = settings.angularDrag;
+		stopBeforeShooty = settings.stopVelocityOnShoot;
 	}
 
 }
