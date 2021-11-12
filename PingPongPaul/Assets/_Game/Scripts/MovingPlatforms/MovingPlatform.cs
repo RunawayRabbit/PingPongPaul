@@ -47,8 +47,7 @@ public class MovingPlatform : SignalReceiverComponent
 	public LoopType movementStyle;
 
 	private Rigidbody2D _rigidbody;
-	private BoxCollider2D _boxCollider;
-
+	private Collider2D _boxCollider;
 
 	[Header( "    Waypoint Stuff" ), SerializeField]
 	private MovementType smoothing;
@@ -59,7 +58,7 @@ public class MovingPlatform : SignalReceiverComponent
 	private void Awake()
 	{
 		_rigidbody    = this.GetComponent<Rigidbody2D>();
-		_boxCollider = this.GetComponent<BoxCollider2D>();
+		_boxCollider = this.GetComponent<Collider2D>();
 
 		_journeyDistance = Vector3.Distance( waypoints[0].position, waypoints[1].position );
 		_moveDuration    = _journeyDistance / movementSpeed;

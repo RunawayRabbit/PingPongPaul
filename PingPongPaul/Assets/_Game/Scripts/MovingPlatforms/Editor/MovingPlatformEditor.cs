@@ -5,14 +5,12 @@ using UnityEngine;
 [CustomEditor( typeof(MovingPlatform) )]
 public class MovingPlatformEditor : Editor
 {
-	private BoxCollider2D _collider;
 	private MovingPlatform platform;
 
 	private void OnEnable()
 	{
 		if( !this.target ) return;
 		platform = (MovingPlatform) this.target;
-		_collider = platform.GetComponent<BoxCollider2D>();
 
 		platform.MakeWaypointsArraySafe();
 		platform.waypoints[0].position = platform.transform.position;
