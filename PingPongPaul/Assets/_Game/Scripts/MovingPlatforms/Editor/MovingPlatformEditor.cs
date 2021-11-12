@@ -5,26 +5,29 @@ using UnityEngine;
 [CustomEditor( typeof(MovingPlatform) )]
 public class MovingPlatformEditor : Editor
 {
-	private MovingPlatform platform;
+	private Collider2D _collider;
+	private MovingPlatform _platform;
 
 	private void OnEnable()
 	{
 		if( !this.target ) return;
-		platform = (MovingPlatform) this.target;
+		_platform = (MovingPlatform) this.target;
 
-		platform.MakeWaypointsArraySafe();
-		platform.waypoints[0].position = platform.transform.position;
+		_platform.MakeWaypointsArraySafe();
+		_platform.waypoints[0].position = _platform.transform.position;
+
+		_collider = _platform.GetComponent<Collider2D>();
 	}
 
 	private void OnSceneGUI()
 	{
-		platform.MakeWaypointsArraySafe();
+		_platform.MakeWaypointsArraySafe();
 
-		if( !Application.isPlaying ) platform.waypoints[0].position = platform.transform.position;
+		if( !Application.isPlaying ) _platform.waypoints[0].position = _platform.transform.position;
 
-		int numIterations = platform.waypoints.Length - 1;
+		int numIterations = _platform.waypoints.Length - 1;
 
-		if( platform.movementStyle == MovingPlatform.LoopType.LoopBackToTheStart ) numIterations++;
+		if( _platform.movementStyle == MovingPlatform.LoopType.LoopBackToTheStart ) numIterations++;
 
 		using( new Handles.DrawingScope() )
 		{
@@ -34,16 +37,16 @@ public class MovingPlatformEditor : Editor
 				DrawWaypointLines( i );
 			}
 
-			for( var i = 0; i < platform.waypoints.Length; i++ ) DrawWaypoints( i );
+			for( var i = 0; i < _platform.waypoints.Length; i++ ) DrawWaypoints( i );
 		}
 	}
 
 	private void DrawWaypointLines( int index )
 	{
-		Vector3 currentPosition = platform.waypoints[index].position;
-		int     next            = (index + 1) % platform.waypoints.Length;
+		Vector3 currentPosition = _platform.waypoints[index].position;
+		int     next            = (index + 1) % _platform.waypoints.Length;
 
-		Handles.DrawLine( currentPosition, platform.waypoints[next].position );
+		Handles.DrawLine( currentPosition, _platform.waypoints[next].position );
 	}
 
 	private void DrawWaypoints( int index )
@@ -57,37 +60,45 @@ public class MovingPlatformEditor : Editor
 		var startColor = new Color( 0.1f, 1.0f, 0.2f, 0.7f );
 		var endColor   = new Color( 0.1f, 0.2f, 1.0f, 0.7f );
 
-		Vector3 currentPosition = platform.waypoints[index].position;
+		Vector3 currentPosition = _platform.waypoints[index].position;
 
-		using( new Handles.DrawingScope( Matrix4x4.TRS( currentPosition,
-														Quaternion.identity,
-														platform.transform.localScale ) ) )
+
+		Handles.color = Color.Lerp( startColor, endColor, (float) index / _platform.waypoints.Length );
+
+		if( _collider is BoxCollider2D )
 		{
-			Handles.color = Color.Lerp( startColor, endColor, (float) index / platform.waypoints.Length );
-
-			Handles.DrawWireCube( Vector3.zero, Vector3.one );
-
-			string waypointText = index == 0 ? "Starting Position" : $"Waypoint {index}";
-
-			Handles.Label( Vector3.zero, $"{waypointText}\nWait Time: {platform.waypoints[index].waitTime} sec", style );
-
-			// Early-out waypoint zero.
-			if( index == 0
-				&& !Application.isPlaying )
-				return;
-
-			EditorGUI.BeginChangeCheck();
+			using( new Handles.DrawingScope( Matrix4x4.TRS( currentPosition,
+															Quaternion.identity,
+															_platform.transform.localScale ) ) )
+			{
+				Handles.DrawWireCube( Vector3.zero, Vector3.one );
+			}
 		}
+		else if( _collider is CircleCollider2D )
+		{
+			var circleCollider = _collider as CircleCollider2D;
+			Handles.DrawWireDisc( currentPosition, Vector3.forward, circleCollider.radius * _platform.transform.localScale.x );
+		}
+
+		string waypointText = index == 0 ? "Starting Position" : $"Waypoint {index}";
+
+		Handles.Label(currentPosition, $"{waypointText}\nWait Time: {_platform.waypoints[index].waitTime} sec", style );
+
+		// Early-out waypoint zero.
+		if( index == 0
+			&& !Application.isPlaying )
+			return;
+
+		EditorGUI.BeginChangeCheck();
 
 		Vector3 newPoint = Handles.DoPositionHandle( currentPosition, Quaternion.identity );
 
-			if( EditorGUI.EndChangeCheck() )
-			{
-				Undo.RecordObject( platform, "Moved EnemyPath Point" );
-				EditorUtility.SetDirty( platform );
+		if( EditorGUI.EndChangeCheck() )
+		{
+			Undo.RecordObject( _platform, "Moved EnemyPath Point" );
+			EditorUtility.SetDirty( _platform );
 
-				platform.waypoints[index].position = newPoint; // + platform.transform.position;
-			}
-
+			_platform.waypoints[index].position = newPoint; // + platform.transform.position;
+		}
 	}
 }
