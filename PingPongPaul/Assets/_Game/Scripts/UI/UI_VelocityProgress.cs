@@ -42,6 +42,12 @@ public class UI_VelocityProgress : MonoBehaviour
 
 	void Update()
 	{
+		if( Input.GetKey( KeyCode.Mouse1 ) == true )
+		{
+			StopExisting();
+			return;
+		}
+
 		if( Input.GetKey( KeyCode.Mouse0 ) == true )
 		{
 			rectTransform.position = Camera.main.WorldToScreenPoint( ballTransform.position );
@@ -56,7 +62,6 @@ public class UI_VelocityProgress : MonoBehaviour
 			alpha        = Mathf.Lerp( 0, 1, Mathf.Clamp( distance, 0, sliderLength ) / sliderLength );
 			slider.value = alpha;
 
-
 			Ball.ShowTrajectory.Invoke( direction, alpha );
 		}
 
@@ -65,12 +70,18 @@ public class UI_VelocityProgress : MonoBehaviour
 			Ball.ShootBall.Invoke( direction, alpha );
 
 			PC_VelocityProgress.pc_velocityProgress.Shoot();
-			Destroy( canvas );
-
-			TrajectoryPrediction.instance.EndTrajectory();
-
-			Time.timeScale      = 1.0f;
-			Time.fixedDeltaTime = Time.timeScale * 0.02f;
+			StopExisting();
 		}
+	}
+
+	void StopExisting()
+	{
+
+		Destroy( canvas );
+
+		TrajectoryPrediction.instance.EndTrajectory();
+
+		Time.timeScale      = 1.0f;
+		Time.fixedDeltaTime = Time.timeScale * 0.02f;
 	}
 }

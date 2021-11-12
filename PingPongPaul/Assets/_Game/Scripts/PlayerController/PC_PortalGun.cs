@@ -62,7 +62,10 @@ public class PC_PortalGun : MonoBehaviour
 
 			if( VisualizationStyle == PortalVisualizationStyle.ShowAtTarget )
 			{
-				if( Input.GetKeyDown( KeyCode.Alpha1 ) && canShootBluePortal ) { InstantiateVisualizer( bluePortal ); }
+				if( Input.GetKeyDown( KeyCode.Alpha1 ) && canShootBluePortal )
+				{
+					InstantiateVisualizer( bluePortal );
+				}
 
 				if( Input.GetKeyDown( KeyCode.Alpha2 ) && canShootOrangePortal )
 				{
@@ -105,8 +108,7 @@ public class PC_PortalGun : MonoBehaviour
 		portalVisualizer = Instantiate( thingy, raycast.point, Quaternion.AngleAxis( angle, Vector3.forward ) ).
 			transform;
 
-		var spriteRenderer = portalVisualizer.GetComponent<SpriteRenderer>();
-		spriteRenderer.color *= new Color( 1.0f, 1.0f, 1.0f, 0.3f );
+		portalVisualizer.GetComponent<PortalBase>().Opacity = 0.3f;
 	}
 
 	private void VisualizePortal()

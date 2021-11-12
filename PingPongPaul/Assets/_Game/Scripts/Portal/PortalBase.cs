@@ -17,6 +17,8 @@ public abstract class PortalBase : MonoBehaviour {
     [SerializeField] protected bool canTeleport;
     [SerializeField] protected bool useDebug;
 
+    public float Opacity = 1.0f;
+
     protected void CalculateExitPosition(PortalBase otherPortal, GameObject paul) {
         Rigidbody2D rigidbody = paul.GetComponent<Rigidbody2D>();
 
@@ -74,7 +76,7 @@ public abstract class PortalBase : MonoBehaviour {
         CheckForEmptiness(ref offsetDirection, ref distance, centerPosition, rightEndPosition, leftEndPosition);
 
         transform.position = transform.position + (offsetDirection * distance);
-        portalColor.a = 1;
+        portalColor.a = Opacity;
         spriteRenderer.color = portalColor;
     }
 
