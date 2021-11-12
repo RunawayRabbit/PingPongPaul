@@ -63,7 +63,10 @@ public class PC_PortalGun : MonoBehaviour {
 
     public void ShootPortal(GameObject prefab) {
         if (canShoot == true) {
-            Instantiate(prefab, raycast.point, Quaternion.AngleAxis(angle, Vector3.forward));
+            PortalBase portalBase = Instantiate(prefab).GetComponent<PortalBase>();
+            portalBase.SetOriginalBounds();
+            portalBase.transform.position = raycast.point;
+            portalBase.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
     }
 

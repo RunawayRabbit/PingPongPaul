@@ -12,6 +12,8 @@ public class OrangePortal : PortalBase {
         orangePortal = this;
 
         canTeleport = true;
+
+        StartCoroutine(CheckPositionDelayed());
     }
 
 

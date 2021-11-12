@@ -10,6 +10,8 @@ public class BluePortal : PortalBase {
         }
         bluePortal = this;
         canTeleport = true;
+
+        StartCoroutine(CheckPositionDelayed());
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
