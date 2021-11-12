@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public enum PortalVisualizationStyle
 {
 	DrawALine,
@@ -10,9 +11,7 @@ public class PC_PortalGun : MonoBehaviour
 	public static PC_PortalGun pc_portalGun;
 
 	[Header( "References" )]
-	[SerializeField]
-	private LineRenderer lineRenderer;
-
+	[SerializeField] private LineRenderer lineRenderer;
 	[SerializeField] private LayerMask wallLayermask;
 	[SerializeField] private LayerMask layermaskPortal;
 
@@ -116,10 +115,14 @@ public class PC_PortalGun : MonoBehaviour
 		portalVisualizer.rotation = Quaternion.AngleAxis( angle, Vector3.forward );
 	}
 
-	private void ShootPortal( GameObject prefab )
-	{
-		if( canShoot == true ) { Instantiate( prefab, raycast.point, Quaternion.AngleAxis( angle, Vector3.forward ) ); }
-	}
+	    public void ShootPortal(GameObject prefab) {
+        if (canShoot == true) {
+            PortalBase portalBase = Instantiate(prefab).GetComponent<PortalBase>();
+            portalBase.SetOriginalBounds();
+            portalBase.transform.position = raycast.point;
+            portalBase.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+    }
 
 	public void ApplySettings( PortalSettings settings )
 	{
