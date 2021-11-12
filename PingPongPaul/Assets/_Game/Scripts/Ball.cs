@@ -2,22 +2,25 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [System.Serializable] public class ShootBallEvent : UnityEvent<Vector2, float> { }
+[System.Serializable] public class ShowTrajectoryEvent : UnityEvent<Vector2, float> { }
 
 
 [RequireComponent( typeof(Rigidbody2D), typeof(CircleCollider2D) )]
 public class Ball : MonoBehaviour
 {
 	public static ShootBallEvent ShootBall;
+	public static ShowTrajectoryEvent ShowTrajectory;
 	public static Ball ball;
 	[SerializeField] private float maxForce = 14.0f;
 	[SerializeField] private float paulStickiness = 14.0f;
 	[SerializeField] private float maxPaulDistance = 3.0f;
 
+	private TrajectoryPrediction trajectory;
 	private RelativeJoint2D paulConnection;
 	private Paul connectedPaul;
 	private bool IsConnectedToPaul = false;
 
-	[SerializeField] private bool stopBeforeShooty = false;
+	[SerializeField] public bool StopBeforeShooty { private set; get; } = false;
 
 	private Rigidbody2D rb;
 	private float radius;
@@ -27,8 +30,18 @@ public class Ball : MonoBehaviour
 		rb     = this.GetComponent<Rigidbody2D>();
 		radius = this.GetComponent<CircleCollider2D>().radius;
 
+		trajectory = TrajectoryPrediction.instance;
+
 		ShootBall = new ShootBallEvent();
 		ShootBall.AddListener( OnShootBall );
+
+		ShowTrajectory = new ShowTrajectoryEvent();
+		ShowTrajectory.AddListener( OnShowTrajectory );
+	}
+
+	private void OnShowTrajectory( Vector2 direction, float t )
+	{
+		trajectory.ShowTrajectory(direction.normalized,  maxForce * t);
 	}
 
     public void Start() {
@@ -44,14 +57,14 @@ public class Ball : MonoBehaviour
 
 		if( Input.GetKeyDown( KeyCode.V ) )
 		{
-			stopBeforeShooty = !stopBeforeShooty;
-			print( "Stop Before Shooty: " + stopBeforeShooty );
+			StopBeforeShooty = !StopBeforeShooty;
+			print( "Stop Before Shooty: " + StopBeforeShooty );
 		}
 	}
 
 	public void OnShootBall( Vector2 Direction, float forcePercent )
 	{
-		if(stopBeforeShooty)
+		if(StopBeforeShooty)
 			rb.velocity = Vector2.zero;
 
 		rb.AddForce( Direction.normalized * (maxForce * forcePercent), ForceMode2D.Impulse );
@@ -95,7 +108,7 @@ public class Ball : MonoBehaviour
 		rb.mass = settings.ballMass;
 		rb.drag = settings.linearDrag;
 		rb.angularDrag = settings.angularDrag;
-		stopBeforeShooty = settings.stopVelocityOnShoot;
+		StopBeforeShooty = settings.stopVelocityOnShoot;
 	}
 
 }

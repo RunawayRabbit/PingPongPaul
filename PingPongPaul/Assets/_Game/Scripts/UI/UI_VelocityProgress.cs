@@ -1,77 +1,76 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_VelocityProgress : MonoBehaviour {
-    [SerializeField] private RectTransform rectTransform;
-    [SerializeField] private Transform ballTransform;
+public class UI_VelocityProgress : MonoBehaviour
+{
+	[SerializeField] private RectTransform rectTransform;
+	[SerializeField] private Transform ballTransform;
 
-    new private Camera camera;
+	new private Camera camera;
 
-    [SerializeField] private GameObject canvas;
-    [SerializeField] private GameObject parent;
-    [SerializeField] private Slider slider;
+	[SerializeField] private GameObject canvas;
+	[SerializeField] private GameObject parent;
+	[SerializeField] private Slider slider;
 
-    [SerializeField] private Vector3 direction;
-    [SerializeField] private float distance;
-    [SerializeField] private float sliderLength;
+	[SerializeField] private Vector3 direction;
+	[SerializeField] private float distance;
+	[SerializeField] private float sliderLength;
 
-    [SerializeField] private float alpha;
+	[SerializeField] private float alpha;
 
-    void Start() {
-        if (slider == null) {
-            slider = GetComponentInChildren<Slider>();
-        }
+	void Start()
+	{
+		if( slider == null ) { slider = GetComponentInChildren<Slider>(); }
 
-        if (canvas == null) {
-            canvas = transform.parent.gameObject;
-        }
+		if( canvas == null ) { canvas = transform.parent.gameObject; }
 
-        if (parent == null) {
-            parent = gameObject;
-        }
+		if( parent == null ) { parent = gameObject; }
 
-        if (rectTransform == null) {
-            rectTransform = GetComponent<RectTransform>();
-        }
+		if( rectTransform == null ) { rectTransform = GetComponent<RectTransform>(); }
 
-        camera = Camera.main;
+		camera = Camera.main;
 
-        direction = Vector3.forward;
-    }
+		direction = Vector3.forward;
 
-    public void SetPosition(Transform transformToFollow) {
-        ballTransform = transformToFollow;
-    }
+		Time.timeScale      = 0.05f;
+		Time.fixedDeltaTime = Time.timeScale * 0.02f;
 
-    void Update() {
+		TrajectoryPrediction.instance.BeginTrajectory();
+	}
 
-        if (Input.GetKey(KeyCode.Mouse0) == true) {
-            rectTransform.position = Camera.main.WorldToScreenPoint(ballTransform.position);
+	public void SetPosition( Transform transformToFollow ) { ballTransform = transformToFollow; }
 
-            direction = Input.mousePosition - transform.position;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            rectTransform.rotation = rotation;
+	void Update()
+	{
+		if( Input.GetKey( KeyCode.Mouse0 ) == true )
+		{
+			rectTransform.position = Camera.main.WorldToScreenPoint( ballTransform.position );
 
-            distance = Vector3.Distance(Input.mousePosition, transform.position);
+			direction = Input.mousePosition - transform.position;
+			float      angle    = Mathf.Atan2( direction.y, direction.x ) * Mathf.Rad2Deg;
+			Quaternion rotation = Quaternion.AngleAxis( angle, Vector3.forward );
+			rectTransform.rotation = rotation;
 
-            alpha = Mathf.Lerp(0, 1, Mathf.Clamp(distance, 0, sliderLength) / sliderLength);
-            slider.value = alpha;
+			distance = Vector3.Distance( Input.mousePosition, transform.position );
 
-            Time.timeScale = 0.05f;
-            Time.fixedDeltaTime = Time.timeScale * 0.02f;
-        }
+			alpha        = Mathf.Lerp( 0, 1, Mathf.Clamp( distance, 0, sliderLength ) / sliderLength );
+			slider.value = alpha;
 
-        if (Input.GetKeyUp(KeyCode.Mouse0)) {
-            Ball.ShootBall.Invoke(direction, alpha);
 
-            Time.timeScale = 1.0f;
-            Time.fixedDeltaTime = Time.timeScale * 0.02f;
+			Ball.ShowTrajectory.Invoke( direction, alpha );
+		}
 
-            PC_VelocityProgress.pc_velocityProgress.Shoot();
-            Destroy(canvas);
+		if( Input.GetKeyUp( KeyCode.Mouse0 ) )
+		{
+			Ball.ShootBall.Invoke( direction, alpha );
 
-        }
-    }
+			PC_VelocityProgress.pc_velocityProgress.Shoot();
+			Destroy( canvas );
 
+			TrajectoryPrediction.instance.EndTrajectory();
+
+			Time.timeScale      = 1.0f;
+			Time.fixedDeltaTime = Time.timeScale * 0.02f;
+		}
+	}
 }
