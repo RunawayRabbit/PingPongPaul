@@ -69,18 +69,21 @@ public class LevelInstance : MonoBehaviour {
 
     private void OnValidate() {
         cameraController.ApplySettings(GetCameraSettings());
-        ApplyPortalSettings();
+        //ApplyPortalSettings();
     }
 
     private void ApplyPortalSettings() {
         PortalSettings portalSettings = GetPortalSettings();
-        if (BluePortal.bluePortal != null) {
-            bluePortal = BluePortal.bluePortal;
+        bluePortal = FindObjectOfType<BluePortal>();
+        if (bluePortal != null) {
             bluePortal.ApplySettings(portalSettings);
+            bluePortal.ConfirmPortalPlacement();
         }
-        if (OrangePortal.orangePortal != null) {
-            orangePortal = OrangePortal.orangePortal;
+
+        orangePortal = FindObjectOfType<OrangePortal>();
+        if (orangePortal != null) {
             orangePortal.ApplySettings(portalSettings);
+            orangePortal.ConfirmPortalPlacement();
         }
         portalGun.ApplySettings(portalSettings);
     }

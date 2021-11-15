@@ -11,6 +11,8 @@ public class OrangePortal : PortalBase {
         orangePortal = this;
 
         canTeleport = true;
+
+        print("Hello?");
     }
 
 
