@@ -59,6 +59,7 @@ MonoBehaviour:
   numberOfBluePortalsAllowed: -1
   canShootOrangePortal: 1
   numberOfOrangePortalsAllowed: -1
+  portalVisualization: 0
   canBluePortalReset: 1
   canOrangePortalReset: 1
   maxShots: 3

@@ -4,25 +4,26 @@ public class BluePortal : PortalBase {
 
     public static BluePortal bluePortal;
 
-    void Start() {
+    protected override void OnConfirmPortalPlacement() {
         if (bluePortal != null) {
             Destroy(bluePortal.gameObject);
         }
         bluePortal = this;
-        canTeleport = true;
 
-        StartCoroutine(CheckPositionDelayed());
+        canTeleport = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         OrangePortal orangePortal = OrangePortal.orangePortal;
-        if (canTeleport == true && orangePortal != null) {
+        if (canTeleport == true && orangePortal != null && orangePortal.CanTeleport() == true) {
             CalculateExitPosition(orangePortal, other.gameObject);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
-        canTeleport = true;
+        if (isGhost == false) {
+            canTeleport = true;
+        }
     }
 
     protected override void OnReset() {

@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UI_VelocityProgress: {fileID: 3339294652211694581, guid: f720310e41e29c54dbf250e2a9f3c40a, type: 3}
+  shotsLeft: 0
+  maxShots: 0
 --- !u!114 &1133626118526462593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,9 +69,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   bluePortal: {fileID: 8964694790817032217, guid: 0246e2412d442f24ab131b88c6370258, type: 3}
+  bluePortalGhostPrefab: {fileID: 8964694790817032217, guid: 687910a5e4b40a64db967b712eadbc88, type: 3}
   canShootBluePortal: 1
+  numberOfBlueShots: -1
   orangePortal: {fileID: 8964694790817032217, guid: 617f1cfef4af0834a85822f0d79483ab, type: 3}
+  orangePortalGhost: {fileID: 0}
   canShootOrangePortal: 1
+  numberOfOrangeShots: -1
+  VisualizationStyle: 1
   portalGunDistance: 100
 --- !u!114 &7536717853944253082
 MonoBehaviour:

@@ -107,6 +107,8 @@ MonoBehaviour:
   portalColor: {r: 0, g: 0.0627451, b: 1, a: 0}
   canTeleport: 0
   useDebug: 0
+  isGhost: 1
+  Opacity: 1
 --- !u!61 &8168555826062638961
 BoxCollider2D:
   m_ObjectHideFlags: 0
