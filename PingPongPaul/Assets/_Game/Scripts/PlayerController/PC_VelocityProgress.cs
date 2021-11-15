@@ -1,3 +1,4 @@
+using MC_Utility;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -25,6 +26,14 @@ public class PC_VelocityProgress : MonoBehaviour {
         }
     }
 
+    private void OnEnable() {
+        EventSystem<ResetEvent>.RegisterListener(ResetShots);
+    }
+
+    private void OnDisable() {
+        EventSystem<ResetEvent>.UnregisterListener(ResetShots);
+    }
+
     public void Shoot() {
         if (maxShots != -1) {
             shotsLeft--;
@@ -33,7 +42,7 @@ public class PC_VelocityProgress : MonoBehaviour {
 
     }
 
-    public void ResetShots() {
+    public void ResetShots(ResetEvent resetEvent) {
         shotsLeft = maxShots;
         if (maxShots == -1) {
             shotsLeft = 9999;

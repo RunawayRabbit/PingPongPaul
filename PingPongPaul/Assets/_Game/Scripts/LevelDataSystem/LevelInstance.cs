@@ -1,3 +1,4 @@
+using MC_Utility;
 using UnityEngine;
 
 public class LevelInstance : MonoBehaviour {
@@ -54,7 +55,16 @@ public class LevelInstance : MonoBehaviour {
         ApplySettings();
     }
 
-    public void ResetValues() {
+
+    private void OnEnable() {
+        EventSystem<ResetEvent>.RegisterListener(ResetValues);
+    }
+
+    private void OnDisable() {
+        EventSystem<ResetEvent>.UnregisterListener(ResetValues);
+    }
+
+    public void ResetValues(ResetEvent resetEvent) {
         ApplySettings();
     }
 

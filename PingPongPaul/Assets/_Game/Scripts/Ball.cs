@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using MC_Utility;
 
 [System.Serializable] public class ShootBallEvent : UnityEvent<Vector2, float> { }
 [System.Serializable] public class ShowTrajectoryEvent : UnityEvent<Vector2, float> { }
@@ -19,7 +20,7 @@ public class Ball : MonoBehaviour
 	private RelativeJoint2D paulConnection;
 	private Paul connectedPaul;
 	private bool IsConnectedToPaul = false;
-
+	private Vector3 startPosition;
 	[SerializeField] public bool StopBeforeShooty { private set; get; } = false;
 
 	private Rigidbody2D rb;
@@ -46,7 +47,23 @@ public class Ball : MonoBehaviour
 
     public void Start() {
 		ball = this;
+		startPosition = transform.position;
+
+	}
+
+    private void OnEnable() {
+		EventSystem<ResetEvent>.RegisterListener(ResetBall);
     }
+
+    private void OnDisable() {
+		EventSystem<ResetEvent>.UnregisterListener(ResetBall);
+	}
+
+	private void ResetBall(ResetEvent resetEvent) {
+		transform.position = startPosition;
+		rb.velocity = Vector2.zero;
+		rb.angularVelocity = 0f;
+	}
 
 	private void Update()
 	{

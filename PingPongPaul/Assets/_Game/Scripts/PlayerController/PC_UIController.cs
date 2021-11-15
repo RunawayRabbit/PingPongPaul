@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using MC_Utility;
 
 public class PC_UIController : MonoBehaviour {
 
@@ -17,6 +18,16 @@ public class PC_UIController : MonoBehaviour {
         pc_uiController = this;
         HideWinScreen();
         HideLoseScreen();
+    }
+
+    private void OnEnable() {
+        EventSystem<ResetEvent>.RegisterListener(ResetUI);
+
+    }
+
+    private void OnDisable() {
+        EventSystem<ResetEvent>.UnregisterListener(ResetUI);
+
     }
 
     public void ResetGame() {
@@ -72,6 +83,11 @@ public class PC_UIController : MonoBehaviour {
             HideLoseScreen();
         }
         winScreen.SetActive(true);
+    }
+
+    private void ResetUI(ResetEvent resetEvent) {
+        HideWinScreen();
+        HideLoseScreen();
     }
 
     public void HideWinScreen() {

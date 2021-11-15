@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using MC_Utility;
+using System.Collections;
 using UnityEngine;
 
 public abstract class PortalBase : MonoBehaviour {
@@ -19,6 +20,16 @@ public abstract class PortalBase : MonoBehaviour {
     [SerializeField] protected bool isGhost = true;
 
     public float Opacity = 1.0f;
+
+
+    private void OnEnable() {
+        EventSystem<ResetEvent>.RegisterListener(ResetPortal);
+    }
+
+    private void OnDisable() {
+        EventSystem<ResetEvent>.UnregisterListener(ResetPortal);
+    }
+
 
     public void ConfirmPortalPlacement( ) {
 
@@ -57,7 +68,7 @@ public abstract class PortalBase : MonoBehaviour {
         return canTeleport;
     }
 
-    public void ResetPortal() {
+    public void ResetPortal(ResetEvent resetEvent) {
         if (canBeReset == true) {
             OnReset();
         }

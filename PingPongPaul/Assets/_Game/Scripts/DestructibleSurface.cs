@@ -23,6 +23,7 @@ Color startColor;
     private void OnDisable() {
         allDestructibleSurfaces.Add(this);
         currentNumberOfHits = numberOfHits;
+
     }
 
     public static void ResetAllDestructibleSurfaces() {
