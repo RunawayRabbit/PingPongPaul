@@ -38,7 +38,7 @@ public class MovingPlatform : SignalReceiverComponent
 	private float _journeyDistance;
 	private float _moveDuration;
 
-	[SerializeField, Range( 0.1f, 5.0f ),
+	[SerializeField, Range( 0.1f, 20.0f ),
 	 Tooltip(
 		 "AVERAGE speed of the platform. Smoothing will make it slower at the start/end and faster in the middle." )]
 	private float movementSpeed = 2.0f;
