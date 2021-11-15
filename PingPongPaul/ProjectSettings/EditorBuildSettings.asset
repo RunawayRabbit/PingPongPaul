@@ -9,10 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Level1.unity
     guid: bea9a6bba85068244b786d13cdc9569e
   - enabled: 1
-    path: Assets/Scenes/HelgeTestLevel1.unity
+    path: Assets/Scenes/HelgeTestLevel1_Bounce.unity
     guid: d75fab60199106646ac7b16ac021bf2a
   - enabled: 1
-    path: Assets/Scenes/HelgeTestLevel2.unity
+    path: Assets/Scenes/HelgeTestLevel2_SmallBrickPuzzle.unity
     guid: cee07affd590a774789502ab223a6f1d
   - enabled: 1
     path: Assets/Scenes/Mockups/PortalJump_Mike.unity
