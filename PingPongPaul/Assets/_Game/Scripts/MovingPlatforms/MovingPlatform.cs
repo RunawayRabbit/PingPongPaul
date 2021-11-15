@@ -62,6 +62,8 @@ public class MovingPlatform : SignalReceiverComponent
 
 		_journeyDistance = Vector3.Distance( waypoints[0].position, waypoints[1].position );
 		_moveDuration    = _journeyDistance / movementSpeed;
+
+		_rigidbody.isKinematic = true;
 	}
 
 	#if UNITY_EDITOR
