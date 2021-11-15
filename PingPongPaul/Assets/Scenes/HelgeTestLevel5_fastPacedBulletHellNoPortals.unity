@@ -2909,6 +2909,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfHits: 3
+  spriteRenderer: {fileID: 1741063453}
+  endColor: {r: 0.2830189, g: 0.26757127, b: 0, a: 1}
 --- !u!61 &1741063459
 BoxCollider2D:
   m_ObjectHideFlags: 0

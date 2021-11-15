@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &373853128719571706
+--- !u!1 &1708965839991166542
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,77 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4540489642618201840}
-  - component: {fileID: 8837808364808691206}
-  - component: {fileID: 3943889146608786633}
+  - component: {fileID: 7153571669114696463}
+  - component: {fileID: 4764058551203048012}
+  m_Layer: 0
+  m_Name: LEVEL_ESSENTIALS_BASE
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7153571669114696463
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708965839991166542}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2954508134100541120}
+  - {fileID: 8946882106021022035}
+  - {fileID: 8321406153819142213}
+  - {fileID: 5097623981912352350}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4764058551203048012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708965839991166542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f677d68173a8a704d8484b18188742fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelData: {fileID: 11400000, guid: 4715e5080d8309844acdedf5ba4c8f2a, type: 2}
+  cameraController: {fileID: 8946882106021022032}
+  ball: {fileID: 2954508134100541127}
+  portalGun: {fileID: 7905855344403603483}
+  bluePortal: {fileID: 0}
+  orangePortal: {fileID: 0}
+  gravity: -9.81
+  cancelVelocityOnShoot: 1
+  canShootBluePortal: 1
+  numberOfBluePortalsAllowed: -1
+  canShootOrangePortal: 1
+  numberOfOrangePortalsAllowed: -1
+  canBluePortalReset: 1
+  canOrangePortalReset: 1
+  maxShots: 3
+  threeStar: 1
+  twoStar: 2
+  oneStar: 3
+  startZoomValue: 5.5
+  minZoomValue: 3
+  maxZoomValue: 7
+--- !u!1 &5425982254835354710
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5097623981912352350}
+  - component: {fileID: 8950084405502676980}
+  - component: {fileID: 6267880291697930365}
   m_Layer: 0
   m_Name: Trajectory
   m_TagString: Untagged
@@ -18,13 +86,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4540489642618201840
+--- !u!4 &5097623981912352350
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 373853128719571706}
+  m_GameObject: {fileID: 5425982254835354710}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,13 +100,13 @@ Transform:
   m_Father: {fileID: 7153571669114696463}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!120 &8837808364808691206
+--- !u!120 &8950084405502676980
 LineRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 373853128719571706}
+  m_GameObject: {fileID: 5425982254835354710}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -130,13 +198,13 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &3943889146608786633
+--- !u!114 &6267880291697930365
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 373853128719571706}
+  m_GameObject: {fileID: 5425982254835354710}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2be317273b042ea43a3e23d17a4cf8c6, type: 3}
@@ -144,74 +212,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeFactor: 16
   predictionTime: 2
---- !u!1 &1708965839991166542
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7153571669114696463}
-  - component: {fileID: 4764058551203048012}
-  m_Layer: 0
-  m_Name: LEVEL_ESSENTIALS_AfterDance
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7153571669114696463
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708965839991166542}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2954508134100541120}
-  - {fileID: 8946882106021022035}
-  - {fileID: 8321406153819142213}
-  - {fileID: 4540489642618201840}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4764058551203048012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708965839991166542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f677d68173a8a704d8484b18188742fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelData: {fileID: 11400000, guid: b8036a604b7cfac49b3a33507a78b268, type: 2}
-  cameraController: {fileID: 8946882106021022032}
-  ball: {fileID: 2954508134100541127}
-  portalGun: {fileID: 7905855344403603483}
-  bluePortal: {fileID: 0}
-  orangePortal: {fileID: 0}
-  gravity: -9.81
-  cancelVelocityOnShoot: 1
-  canShootBluePortal: 1
-  numberOfBluePortalsAllowed: -1
-  canShootOrangePortal: 1
-  numberOfOrangePortalsAllowed: -1
-  canBluePortalReset: 1
-  canOrangePortalReset: 1
-  maxShots: 3
-  threeStar: 1
-  twoStar: 2
-  oneStar: 3
-  startZoomValue: 5.5
-  minZoomValue: 3
-  maxZoomValue: 7
 --- !u!1001 &1600658819001857757
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -392,10 +392,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5082587638644612614, guid: 94e8fabd135f7574781f971dcb6b2b55, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5082587638644612614, guid: 94e8fabd135f7574781f971dcb6b2b55, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -484,10 +480,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6294686957779673137, guid: 94e8fabd135f7574781f971dcb6b2b55, type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6294686957779673137, guid: 94e8fabd135f7574781f971dcb6b2b55, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -562,10 +554,6 @@ PrefabInstance:
     - target: {fileID: 7299557063909107176, guid: 94e8fabd135f7574781f971dcb6b2b55, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7299557063909107177, guid: 94e8fabd135f7574781f971dcb6b2b55, type: 3}
-      propertyPath: m_Name
-      value: Text_ShotsLeftNumberCurrent
       objectReference: {fileID: 0}
     - target: {fileID: 7299557064061356790, guid: 94e8fabd135f7574781f971dcb6b2b55, type: 3}
       propertyPath: m_AnchorMax.y
