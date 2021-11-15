@@ -14,4 +14,14 @@ public class DeathBox : MonoBehaviour {
             
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.layer == paulLayer) {
+            PC_UIController.pc_uiController.ShowWinScreen();
+        }
+
+        if (collision.gameObject.layer == ballLayer) {
+
+        }
+    }
 }
