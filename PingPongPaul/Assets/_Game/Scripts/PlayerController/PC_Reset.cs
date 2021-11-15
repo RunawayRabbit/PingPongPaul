@@ -30,6 +30,7 @@ public class PC_Reset : MonoBehaviour {
         LevelInstance.levelInstance.ResetValues();
         PC_VelocityProgress.pc_velocityProgress.ResetShots();
         PC_UIController.pc_uiController.HideWinScreen();
+        PC_UIController.pc_uiController.HideLoseScreen();
     }
 
 }

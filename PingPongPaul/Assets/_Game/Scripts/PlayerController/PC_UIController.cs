@@ -11,10 +11,12 @@ public class PC_UIController : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI maxShotsText;
     [SerializeField] private PC_CameraController pc_cameraController;
     [SerializeField] private GameObject winScreen;
+    [SerializeField] private GameObject loseScreen;
 
     private void Start() {
         pc_uiController = this;
         HideWinScreen();
+        HideLoseScreen();
     }
 
     public void ResetGame() {
@@ -66,11 +68,23 @@ public class PC_UIController : MonoBehaviour {
     }
 
     public void ShowWinScreen() {
+        if (loseScreen.activeSelf == true) {
+            HideLoseScreen();
+        }
         winScreen.SetActive(true);
     }
 
     public void HideWinScreen() {
         winScreen.SetActive(false);
     }
+
+    public void ShowLoseScreen() {
+        loseScreen.SetActive(true);
+    }
+
+    public void HideLoseScreen() {
+        loseScreen.SetActive(false);
+    }
+
 
 }
