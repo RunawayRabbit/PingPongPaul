@@ -4104,6 +4104,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3734677271947813649, guid: 0c384741d4ea2c0438ec837e340b91f6, type: 3}
+      propertyPath: maxForce
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3734677271947813654, guid: 0c384741d4ea2c0438ec837e340b91f6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.3
@@ -4218,6 +4222,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6181636450081206258, guid: 0c384741d4ea2c0438ec837e340b91f6, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397906762210645914, guid: 0c384741d4ea2c0438ec837e340b91f6, type: 3}
+      propertyPath: canOrangePortalReset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397906762210645914, guid: 0c384741d4ea2c0438ec837e340b91f6, type: 3}
+      propertyPath: canShootOrangePortal
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6517484808238376396, guid: 0c384741d4ea2c0438ec837e340b91f6, type: 3}
