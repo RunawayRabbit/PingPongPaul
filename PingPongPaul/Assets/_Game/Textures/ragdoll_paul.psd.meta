@@ -4,7 +4,7 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 7843676423592672170
-    second: PaulFace
+    second: PaulHappy
   - first:
       213: -752842657174126936
     second: PaulTorso
@@ -23,6 +23,18 @@ TextureImporter:
   - first:
       213: 6027030131976485999
     second: PaulLeg
+  - first:
+      213: 5420479254621186796
+    second: PaulSurprised
+  - first:
+      213: -5126957705324221639
+    second: PaulDead
+  - first:
+      213: 8477140519435591654
+    second: PaulSad
+  - first:
+      213: 4731266185034803581
+    second: PaulPain
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -112,11 +124,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PaulFace
+      name: PaulHappy
       rect:
         serializedVersion: 2
         x: 20
-        y: 406
+        y: 418
         width: 84
         height: 84
       alignment: 0
@@ -137,7 +149,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 18
-        y: 212
+        y: 224
         width: 100
         height: 167
       alignment: 0
@@ -158,7 +170,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 291
+        y: 303
         width: 40
         height: 93
       alignment: 0
@@ -179,7 +191,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 135
-        y: 218
+        y: 230
         width: 26
         height: 63
       alignment: 0
@@ -200,7 +212,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 72
-        y: 107
+        y: 119
         width: 40
         height: 94
       alignment: 0
@@ -220,8 +232,8 @@ TextureImporter:
       name: PaulHand
       rect:
         serializedVersion: 2
-        x: 133
-        y: 169
+        x: 134
+        y: 181
         width: 38
         height: 32
       alignment: 0
@@ -242,7 +254,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 125
-        y: 18
+        y: 30
         width: 61
         height: 121
       alignment: 0
@@ -254,6 +266,90 @@ TextureImporter:
       bones: []
       spriteID: f6cb803f8ff44a350800000000000000
       internalID: 6027030131976485999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PaulSurprised
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 412
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ceae114c929693b40800000000000000
+      internalID: 5420479254621186796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PaulDead
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 316
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93ba2bb712369d8b0800000000000000
+      internalID: -5126957705324221639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PaulSad
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 415
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ef570c736ad4a570800000000000000
+      internalID: 8477140519435591654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PaulPain
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 413
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7921d82785d8a140800000000000000
+      internalID: 4731266185034803581
       vertices: []
       indices: 
       edges: []

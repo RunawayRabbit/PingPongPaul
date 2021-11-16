@@ -97,7 +97,7 @@ public class Ball : MonoBehaviour
 			&& connectedPaul == null )
 		{
 			connectedPaul = other.gameObject.GetComponentInParent<Paul>();
-			connectedPaul.BallHitPaul( gameObject );
+			connectedPaul.MakePaulRagDoll();
 
 			paulConnection               = gameObject.AddComponent<RelativeJoint2D>();
 			paulConnection.connectedBody = other.rigidbody;

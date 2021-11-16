@@ -152,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strength: 100
   targetAngle: 0
+  maximumAngle: 110
 --- !u!114 &6539414873608371644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,7 +165,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12d00c397d40ee4c902f7b87e418fee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PaulPrefab: {fileID: 6683395602957056391}
+  PaulFace: {fileID: 6683395604747851401}
+  paulHappy: {fileID: 7843676423592672170, guid: b512ddde33c4aff4bbddb84361eedeb0, type: 3}
+  paulSurprised: {fileID: 5420479254621186796, guid: b512ddde33c4aff4bbddb84361eedeb0, type: 3}
+  paulPain: {fileID: 4731266185034803581, guid: b512ddde33c4aff4bbddb84361eedeb0, type: 3}
+  paulSad: {fileID: 8477140519435591654, guid: b512ddde33c4aff4bbddb84361eedeb0, type: 3}
+  paulDead: {fileID: -5126957705324221639, guid: b512ddde33c4aff4bbddb84361eedeb0, type: 3}
 --- !u!1 &6683395603218282898
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,6 +500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strength: 280
   targetAngle: 0
+  maximumAngle: 110
 --- !u!1 &6683395603976848238
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,6 +1141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strength: 50
   targetAngle: 0
+  maximumAngle: 110
 --- !u!1 &6683395604492482647
 GameObject:
   m_ObjectHideFlags: 0
@@ -1306,6 +1314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strength: 280
   targetAngle: 0
+  maximumAngle: 110
 --- !u!1 &6683395604721123499
 GameObject:
   m_ObjectHideFlags: 0
@@ -1937,3 +1946,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strength: 50
   targetAngle: 0
+  maximumAngle: 110
