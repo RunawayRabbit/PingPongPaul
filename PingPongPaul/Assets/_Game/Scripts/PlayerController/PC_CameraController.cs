@@ -19,6 +19,10 @@ public class PC_CameraController : MonoBehaviour {
     [Header("Debug")]
     [SerializeField] private Vector2 moveVelocity;
 
+    private void Start() {
+        ApplySettings();
+    }
+
     void Update() {
         float deltaTime = Time.unscaledDeltaTime;
         UpdateCameraDistance(deltaTime);
@@ -50,7 +54,9 @@ public class PC_CameraController : MonoBehaviour {
         transform.position = position;
     }
 
-    public void ApplySettings(CameraSettings cameraSettings) {
+    public void ApplySettings() {
+        CameraSettings cameraSettings = LevelInstance.levelInstance.GetCameraSettings();
+
         minZoomValue = cameraSettings.minZoomValue;
         maxZoomValue = cameraSettings.maxZoomValue;
         cameraDistance = Mathf.Clamp(cameraSettings.startZoomValue, minZoomValue, maxZoomValue);

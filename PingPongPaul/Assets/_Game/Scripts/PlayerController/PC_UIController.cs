@@ -14,20 +14,18 @@ public class PC_UIController : MonoBehaviour {
     [SerializeField] private GameObject winScreen;
     [SerializeField] private GameObject loseScreen;
 
-    private void Start() {
+    private void OnEnable() {
         pc_uiController = this;
+        EventSystem<ResetEvent>.RegisterListener(ResetUI);
+    }
+
+    private void Start() {
         HideWinScreen();
         HideLoseScreen();
     }
 
-    private void OnEnable() {
-        EventSystem<ResetEvent>.RegisterListener(ResetUI);
-
-    }
-
     private void OnDisable() {
         EventSystem<ResetEvent>.UnregisterListener(ResetUI);
-
     }
 
     public void ResetGame() {

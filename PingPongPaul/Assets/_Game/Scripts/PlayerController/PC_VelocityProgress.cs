@@ -13,7 +13,16 @@ public class PC_VelocityProgress : MonoBehaviour {
     [SerializeField] private int maxShots;
 
     private void Start() {
+        ApplySettings();
+    }
+
+    private void OnEnable() {
         pc_velocityProgress = this;
+        EventSystem<ResetEvent>.RegisterListener(ResetShots);
+    }
+
+    private void OnDisable() {
+        EventSystem<ResetEvent>.UnregisterListener(ResetShots);
     }
 
     void Update() {
@@ -26,20 +35,11 @@ public class PC_VelocityProgress : MonoBehaviour {
         }
     }
 
-    private void OnEnable() {
-        EventSystem<ResetEvent>.RegisterListener(ResetShots);
-    }
-
-    private void OnDisable() {
-        EventSystem<ResetEvent>.UnregisterListener(ResetShots);
-    }
-
     public void Shoot() {
         if (maxShots != -1) {
             shotsLeft--;
             PC_UIController.pc_uiController.SetCurrentShots(shotsLeft);
         }
-
     }
 
     public void ResetShots(ResetEvent resetEvent) {
@@ -51,17 +51,19 @@ public class PC_VelocityProgress : MonoBehaviour {
         }
     }
 
-    public void ApplySettings(BallSettings settings) {
+    public void ApplySettings() {
+        BallSettings settings = LevelInstance.levelInstance.GetBallSettings();
+
         maxShots = settings.maxShots;
         shotsLeft = maxShots;
         PC_UIController.pc_uiController.SetMaxShots(maxShots);
         PC_UIController.pc_uiController.SetCurrentShots(shotsLeft);
+
         if (maxShots == -1) {
             shotsLeft = 9999;
             PC_UIController.pc_uiController.SetCurrentShots(shotsLeft);
             PC_UIController.pc_uiController.SetMaxShots(9999);
         }
-
     }
 
 }

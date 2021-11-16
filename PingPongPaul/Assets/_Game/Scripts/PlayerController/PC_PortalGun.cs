@@ -42,6 +42,8 @@ public class PC_PortalGun : MonoBehaviour {
         if (lineRenderer == null) {
             lineRenderer = GetComponent<LineRenderer>();
         }
+
+        ApplySettings();
     }
 
     void Update() {
@@ -131,11 +133,25 @@ public class PC_PortalGun : MonoBehaviour {
         visualizedPortal = null;
     }
 
-    public void ApplySettings(PortalSettings settings) {
+    public void ApplySettings() {
+        PortalSettings settings = LevelInstance.levelInstance.GetPortalSettings();
+
         canShootBluePortal = settings.CanShootBluePortal;
         canShootOrangePortal = settings.CanShootOrangePortal;
         numberOfBlueShots = settings.NumberOfBluePortalsAllowed;
         numberOfOrangeShots = settings.NumberOfOrangePortalsAllowed;
         VisualizationStyle = settings.visualizationStyle;
+
+        BluePortal bluePortal = FindObjectOfType<BluePortal>();
+        if (bluePortal != null) {
+            bluePortal.ApplySettings(settings);
+            bluePortal.ConfirmPortalPlacement();
+        }
+
+        OrangePortal orangePortal = FindObjectOfType<OrangePortal>();
+        if (orangePortal != null) {
+            orangePortal.ApplySettings(settings);
+            orangePortal.ConfirmPortalPlacement();
+        }
     }
 }

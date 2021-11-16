@@ -118,7 +118,9 @@ public class Ball : MonoBehaviour
 	}
 
 
-	public void ApplySettings(BallSettings settings) {
+	public void ApplySettings() {
+		BallSettings settings = LevelInstance.levelInstance.GetBallSettings();
+
 		maxForce = settings.MaxForce;
 		paulStickiness = settings.PaulStickiness;
 		maxPaulDistance = settings.MaxPaulDistance;

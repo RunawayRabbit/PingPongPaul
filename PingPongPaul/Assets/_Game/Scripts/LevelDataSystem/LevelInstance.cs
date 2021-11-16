@@ -44,21 +44,15 @@ public class LevelInstance : MonoBehaviour {
     [SerializeField] private float minZoomValue = 3.0f;
     [SerializeField] private float maxZoomValue = 7.0f;
 
-    [ExecuteInEditMode]
-    public void ChangeSettingsRealTime() {
-        print("IsValidating");
+    private void OnEnable() {
+        levelInstance = this;
+        EventSystem<ResetEvent>.RegisterListener(ResetValues);
     }
 
     private void Start() {
-        levelInstance = this;
-
         ApplySettings();
     }
 
-
-    private void OnEnable() {
-        EventSystem<ResetEvent>.RegisterListener(ResetValues);
-    }
 
     private void OnDisable() {
         EventSystem<ResetEvent>.UnregisterListener(ResetValues);
@@ -69,36 +63,11 @@ public class LevelInstance : MonoBehaviour {
     }
 
     private void ApplySettings() {
-        cameraController.ApplySettings(GetCameraSettings());
-        ball.ApplySettings(GetBallSettings());
-        ApplyPortalSettings();
-        PC_VelocityProgress.pc_velocityProgress.ApplySettings(GetBallSettings());
         Physics2D.gravity = new Vector2(0.0f, gravity);
-
     }
 
-    private void OnValidate() {
-        cameraController.ApplySettings(GetCameraSettings());
-        //ApplyPortalSettings();
-    }
 
-    private void ApplyPortalSettings() {
-        PortalSettings portalSettings = GetPortalSettings();
-        bluePortal = FindObjectOfType<BluePortal>();
-        if (bluePortal != null) {
-            bluePortal.ApplySettings(portalSettings);
-            bluePortal.ConfirmPortalPlacement();
-        }
-
-        orangePortal = FindObjectOfType<OrangePortal>();
-        if (orangePortal != null) {
-            orangePortal.ApplySettings(portalSettings);
-            orangePortal.ConfirmPortalPlacement();
-        }
-        portalGun.ApplySettings(portalSettings);
-    }
-
-    private CameraSettings GetCameraSettings() {
+    public CameraSettings GetCameraSettings() {
         CameraSettings cameraSettings;
         cameraSettings.startZoomValue = startZoomValue;
         cameraSettings.minZoomValue = minZoomValue;
@@ -107,7 +76,7 @@ public class LevelInstance : MonoBehaviour {
         return cameraSettings;
     }
 
-    private BallSettings GetBallSettings() {
+    public BallSettings GetBallSettings() {
         BallSettings settings;
         settings.MaxForce            = levelData.MaxForce;
         settings.PaulStickiness      = levelData.PaulStickiness;
@@ -121,7 +90,7 @@ public class LevelInstance : MonoBehaviour {
         return settings;
     }
 
-    private PortalSettings GetPortalSettings() {
+    public PortalSettings GetPortalSettings() {
         PortalSettings settings;
         settings.CanBluePortalReset           = canBluePortalReset;
         settings.CanShootBluePortal           = canShootBluePortal;
