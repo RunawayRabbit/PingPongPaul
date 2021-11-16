@@ -76,7 +76,6 @@ public class UI_VelocityProgress : MonoBehaviour
 
 	void StopExisting()
 	{
-
 		Destroy( canvas );
 
 		TrajectoryPrediction.instance.EndTrajectory();

@@ -1,37 +1,39 @@
 using UnityEngine;
 
-public class BluePortal : PortalBase {
+public class BluePortal : PortalBase
+{
+	public static BluePortal bluePortal;
 
-    public static BluePortal bluePortal;
+	protected override void OnConfirmPortalPlacement()
+	{
+		if( bluePortal != null ) { Destroy( bluePortal.gameObject ); }
 
-    protected override void OnConfirmPortalPlacement() {
-        if (bluePortal != null) {
-            Destroy(bluePortal.gameObject);
-        }
-        bluePortal = this;
+		bluePortal = this;
 
-        canTeleport = true;
-    }
+		canTeleport = true;
+	}
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        OrangePortal orangePortal = OrangePortal.orangePortal;
-        if (canTeleport == true && orangePortal != null && orangePortal.CanTeleport() == true) {
-            CalculateExitPosition(orangePortal, other.gameObject);
-        }
-    }
+	private void OnTriggerEnter2D( Collider2D other )
+	{
+		if( (portalableObjectLayerMask.value | (1 << other.gameObject.layer)) != 0 )
+		{
+			OrangePortal orangePortal = OrangePortal.orangePortal;
 
-    private void OnTriggerExit2D(Collider2D collision) {
-        if (isGhost == false) {
-            canTeleport = true;
-        }
-    }
+			if( canTeleport == true
+				&& orangePortal != null
+				&& orangePortal.CanTeleport() == true ) { EnterPortal( orangePortal, other.gameObject ); }
+		}
+	}
 
-    protected override void OnReset() {
-        Destroy(bluePortal.gameObject);
-    }
 
-    public override void ApplySettings(PortalSettings settings) {
-        canBeReset = settings.CanBluePortalReset;
-    }
+	private void OnTriggerExit2D( Collider2D other )
+	{
+		if( isGhost == false ) { canTeleport = true; }
 
+		ExitPortal( OrangePortal.orangePortal, other.gameObject );
+	}
+
+	protected override void OnReset() { Destroy( bluePortal.gameObject ); }
+
+	public override void ApplySettings( PortalSettings settings ) { canBeReset = settings.CanBluePortalReset; }
 }
