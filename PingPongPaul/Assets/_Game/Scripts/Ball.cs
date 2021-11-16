@@ -28,10 +28,11 @@ public class Ball : MonoBehaviour
 
 	private void Awake()
 	{
+		ball = this;
+
 		rb     = this.GetComponent<Rigidbody2D>();
 		radius = this.GetComponent<CircleCollider2D>().radius;
 
-		trajectory = TrajectoryPrediction.instance;
 
 		ShootBall = new ShootBallEvent();
 		ShootBall.AddListener( OnShootBall );
@@ -42,11 +43,14 @@ public class Ball : MonoBehaviour
 
 	private void OnShowTrajectory( Vector2 direction, float t )
 	{
+		if (trajectory == null) {
+			print("Trajectory is null");
+        }
 		trajectory.ShowTrajectory(direction.normalized,  maxForce * t);
 	}
 
     public void Start() {
-		ball = this;
+		trajectory = TrajectoryPrediction.instance;
 		startPosition = transform.position;
 
 	}
