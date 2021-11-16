@@ -108,6 +108,8 @@ public class PC_PortalGun : MonoBehaviour {
             visualizedPortal.CancelPortalPlacement();
             visualizedPortal = null;
             VisualizationStyle = PortalVisualizationStyle.Nothing;
+            Time.timeScale = 1.0f;
+            Time.fixedDeltaTime = Time.timeScale * 0.02f;
         }
     }
 
@@ -118,6 +120,9 @@ public class PC_PortalGun : MonoBehaviour {
         visualizedPortal.Opacity = 0.7f;
 
         VisualizationStyle = PortalVisualizationStyle.DrawALine;
+
+        Time.timeScale = 0.05f;
+        Time.fixedDeltaTime = Time.timeScale * 0.02f;
     }
 
     private void VisualizePortal() {
@@ -131,6 +136,8 @@ public class PC_PortalGun : MonoBehaviour {
 
         VisualizationStyle = PortalVisualizationStyle.Nothing;
         visualizedPortal = null;
+        Time.timeScale = 1.0f;
+        Time.fixedDeltaTime = Time.timeScale * 0.02f;
     }
 
     public void ApplySettings() {

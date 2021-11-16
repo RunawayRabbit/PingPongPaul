@@ -35,7 +35,8 @@ public class TrajectoryPrediction : MonoBehaviour
 		lineRenderer         = GetComponent<LineRenderer>();
 		lineRenderer.enabled = false;
 
-		if( instance == null ) instance = this;
+		if( instance == null ) 
+			instance = this;
 	}
 
 	private void FixedUpdate() { mainScene.GetPhysicsScene2D().Simulate( Time.fixedDeltaTime ); }
