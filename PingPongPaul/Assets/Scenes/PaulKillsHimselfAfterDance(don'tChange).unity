@@ -1024,7 +1024,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2558922052659434486, guid: e8c96e9fa2873cb40844c06be2df929d, type: 3}
       propertyPath: startZoomValue
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2824588651003768336, guid: e8c96e9fa2873cb40844c06be2df929d, type: 3}
       propertyPath: m_SizeDelta.x

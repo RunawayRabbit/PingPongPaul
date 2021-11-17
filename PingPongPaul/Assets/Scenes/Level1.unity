@@ -723,15 +723,31 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1009412474}
     - target: {fileID: 2558922052659434486, guid: e8c96e9fa2873cb40844c06be2df929d, type: 3}
+      propertyPath: maxZoomValue
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558922052659434486, guid: e8c96e9fa2873cb40844c06be2df929d, type: 3}
       propertyPath: orangePortal
       value: 
       objectReference: {fileID: 1781785614}
+    - target: {fileID: 2558922052659434486, guid: e8c96e9fa2873cb40844c06be2df929d, type: 3}
+      propertyPath: startZoomValue
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2558922052659434486, guid: e8c96e9fa2873cb40844c06be2df929d, type: 3}
       propertyPath: canBluePortalReset
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2558922052659434486, guid: e8c96e9fa2873cb40844c06be2df929d, type: 3}
+      propertyPath: canShootBluePortal
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558922052659434486, guid: e8c96e9fa2873cb40844c06be2df929d, type: 3}
       propertyPath: canOrangePortalReset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558922052659434486, guid: e8c96e9fa2873cb40844c06be2df929d, type: 3}
+      propertyPath: canShootOrangePortal
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2824588651003768336, guid: e8c96e9fa2873cb40844c06be2df929d, type: 3}

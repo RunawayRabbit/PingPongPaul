@@ -4460,7 +4460,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6397906762210645914, guid: 0c384741d4ea2c0438ec837e340b91f6, type: 3}
       propertyPath: maxZoomValue
-      value: 12
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 6397906762210645914, guid: 0c384741d4ea2c0438ec837e340b91f6, type: 3}
       propertyPath: startZoomValue

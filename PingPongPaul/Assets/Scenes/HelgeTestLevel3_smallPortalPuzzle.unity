@@ -6955,6 +6955,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6397906762210645914, guid: 0c384741d4ea2c0438ec837e340b91f6, type: 3}
+      propertyPath: startZoomValue
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6517484808238376396, guid: 0c384741d4ea2c0438ec837e340b91f6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
