@@ -1,5 +1,6 @@
 ﻿using System;
 using Freya;
+using MC_Utility;
 using UnityEngine;
 
 namespace _Game.Scripts.MovingPlatforms
@@ -57,7 +58,7 @@ public class MovingPlatform : SignalReceiverComponent
 
 	private void Awake()
 	{
-		_rigidbody    = this.GetComponent<Rigidbody2D>();
+		_rigidbody   = this.GetComponent<Rigidbody2D>();
 		_boxCollider = this.GetComponent<Collider2D>();
 
 		_journeyDistance = Vector3.Distance( waypoints[0].position, waypoints[1].position );
@@ -66,7 +67,24 @@ public class MovingPlatform : SignalReceiverComponent
 		_rigidbody.isKinematic = true;
 	}
 
-	#if UNITY_EDITOR
+	private void OnEnable()  => EventSystem<ResetEvent>.RegisterListener( OnReset );
+	private void OnDisable() => EventSystem<ResetEvent>.UnregisterListener( OnReset );
+
+	private void OnReset( ResetEvent resetEvent )
+	{
+		_journeyDistance = Vector3.Distance( waypoints[0].position, waypoints[1].position );
+		_moveDuration    = _journeyDistance / movementSpeed;
+
+		transform.position     = waypoints[0].position;
+		_fractionalTimeElapsed = 0.0f;
+
+		_currentPosition = 0;
+		_nextPosition = 0;
+
+		waitTimer = 0.0f;
+	}
+
+#if UNITY_EDITOR
 	public void MakeWaypointsArraySafe()
 	{
 		if( waypoints != null
@@ -78,9 +96,7 @@ public class MovingPlatform : SignalReceiverComponent
 
 		waypoints = new PlatformWaypoint[2];
 
-		for( var i = 0;
-			 i < waypoints.Length;
-			 i++ )
+		for( var i = 0; i < waypoints.Length; i++ )
 		{
 			waypoints[i].position = position + i * 3.0f * forward;
 			waypoints[i].waitTime = 1.0f;
@@ -93,20 +109,17 @@ public class MovingPlatform : SignalReceiverComponent
 	{
 		if( !isMoving ) return;
 
-		Vector3 playerPos         = Ball.ball.transform.position;
+		Vector3 playerPos = Ball.ball.transform.position;
 
 		Vector3 platformPosition  = _boxCollider.ClosestPoint( playerPos );
 		Vector3 tolerancePosition = (playerPos - platformPosition).normalized;
 
-		float playerIsAbovePlatform =
-			Vector3.Dot( this.transform.up, tolerancePosition );
+		float playerIsAbovePlatform = Vector3.Dot( this.transform.up, tolerancePosition );
 		_boxCollider.enabled = playerIsAbovePlatform > -0.01f;
 
 		if( WaitForTimer() ) return;
 
-		float currentDistance =
-			Vector3.Distance( this.transform.position,
-							  waypoints[_nextPosition].position );
+		float currentDistance = Vector3.Distance( this.transform.position, waypoints[_nextPosition].position );
 
 
 		if( currentDistance < 0.01f )
@@ -163,9 +176,8 @@ public class MovingPlatform : SignalReceiverComponent
 			_nextPosition = nextIndexCandidate;
 		}
 
-		_journeyDistance = Vector3.Distance( waypoints[_currentPosition].position,
-											waypoints[_nextPosition].position );
-		_moveDuration = _journeyDistance / movementSpeed;
+		_journeyDistance = Vector3.Distance( waypoints[_currentPosition].position, waypoints[_nextPosition].position );
+		_moveDuration    = _journeyDistance / movementSpeed;
 	}
 
 	private void PerformMove()
@@ -196,9 +208,6 @@ public class MovingPlatform : SignalReceiverComponent
 		_rigidbody.MovePosition( Vector3.Lerp( from, to, t ) );
 	}
 
-	public override void Interact()
-	{
-		isMoving = !isMoving;
-	}
+	public override void Interact() { isMoving = !isMoving; }
 }
 }
