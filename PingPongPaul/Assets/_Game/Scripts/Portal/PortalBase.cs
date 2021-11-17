@@ -38,7 +38,7 @@ public abstract class PortalBase : MonoBehaviour
 
 	protected abstract void OnConfirmPortalPlacement();
 
-	public void CancelPortalPlacement() { Destroy( this ); }
+	public void CancelPortalPlacement() { Destroy( gameObject ); }
 
 	protected void EnterPortal( PortalBase toPortal, GameObject paul )
 	{

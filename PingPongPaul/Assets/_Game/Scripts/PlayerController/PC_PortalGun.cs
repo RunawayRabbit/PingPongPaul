@@ -63,11 +63,9 @@ public class PC_PortalGun : MonoBehaviour {
             Vector2 direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
             raycast = Physics2D.Raycast(transform.position, direction, portalGunDistance, wallLayermask);
 
-            if (raycast == true ) {
+            if (raycast == true) {
 
-                bool canShoot = !raycast.collider.CompareTag( unportalableTag );
-
-                print(canShoot.ToString());
+                bool canShoot = !raycast.collider.CompareTag(unportalableTag);
 
                 lineRenderer.enabled = true;
                 Vector3[] lineToRender = { position, raycast.point };
@@ -75,30 +73,43 @@ public class PC_PortalGun : MonoBehaviour {
 
                 angle = Mathf.Atan2(raycast.normal.y, raycast.normal.x) * Mathf.Rad2Deg;
 
-                if(canShoot)
-                {
-                    VisualizePortal();
+                if (canShoot) {
+                    visualizedPortal.Opacity = 0.7f;
+                    VisualizePortal(new Vector3(raycast.point.x, raycast.point.y));
+                }
+                else {
+                    visualizedPortal.Opacity = 0.0f;
+                    VisualizePortal(new Vector3(999999f, raycast.point.y));
+                }
 
-                    if( Input.GetKeyUp( KeyCode.Alpha1 ) == true
-                        && canShootBluePortal == true )
-                    {
-                        if( numberOfBlueShots != 0 )
-                        {
-                            ShootPortal( bluePortal );
+                if (Input.GetKeyUp(KeyCode.Alpha1) == true
+                    && canShootBluePortal == true) {
+
+                    if (canShoot) {
+
+                        if (numberOfBlueShots != 0) {
+                            ShootPortal(bluePortal);
                             numberOfBlueShots--;
                         }
                     }
+                    else {
+                        CancelPortalPlacement();
+                    }
+                }
 
-                    if( Input.GetKeyUp( KeyCode.Alpha2 ) == true
-                        && canShootOrangePortal == true )
-                    {
-                        if( numberOfOrangeShots != 0 )
-                        {
-                            ShootPortal( orangePortal );
+                if (Input.GetKeyUp(KeyCode.Alpha2) == true
+                    && canShootOrangePortal == true) {
+                    if (canShoot) {
+                        if (numberOfOrangeShots != 0) {
+                            ShootPortal(orangePortal);
                             numberOfOrangeShots--;
                         }
                     }
+                    else {
+                        CancelPortalPlacement();
+                    }
                 }
+                //}
             }
         }
 
@@ -134,8 +145,8 @@ public class PC_PortalGun : MonoBehaviour {
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
     }
 
-    private void VisualizePortal() {
-        portalVisualizer.position = new Vector3(raycast.point.x, raycast.point.y) + visualizedPortal.CheckPosition(raycast.point);
+    private void VisualizePortal(Vector3 raycastPoint) {
+        portalVisualizer.position = raycastPoint + visualizedPortal.CheckPosition(raycast.point);
         portalVisualizer.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
