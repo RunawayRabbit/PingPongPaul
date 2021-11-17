@@ -809,6 +809,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 876360803941325217, guid: e8c96e9fa2873cb40844c06be2df929d, type: 3}
+      propertyPath: unportalableTag
+      value: Unportalable
+      objectReference: {fileID: 0}
+    - target: {fileID: 876360803941325217, guid: e8c96e9fa2873cb40844c06be2df929d, type: 3}
+      propertyPath: unportalable.m_Bits
+      value: 8192
+      objectReference: {fileID: 0}
     - target: {fileID: 1361734984382338243, guid: e8c96e9fa2873cb40844c06be2df929d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2789,7 +2797,7 @@ GameObject:
   - component: {fileID: 1573809707}
   - component: {fileID: 1573809706}
   - component: {fileID: 1573809705}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: LeftDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3565,6 +3573,10 @@ PrefabInstance:
     - target: {fileID: 3129525521476421993, guid: 6339bfd8c3cb4294d96070619aa2026b, type: 3}
       propertyPath: m_Name
       value: RightDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129525521476421993, guid: 6339bfd8c3cb4294d96070619aa2026b, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 3129525521476421995, guid: 6339bfd8c3cb4294d96070619aa2026b, type: 3}
       propertyPath: m_RootOrder

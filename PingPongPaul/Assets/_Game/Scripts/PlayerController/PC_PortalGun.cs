@@ -12,7 +12,7 @@ public class PC_PortalGun : MonoBehaviour {
     [Header("References")]
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private LayerMask wallLayermask;
-    [SerializeField] private LayerMask layermaskPortal;
+    [SerializeField] private string unportalableTag;
 
     [Header("Settings")]
     [SerializeField] private GameObject bluePortal;
@@ -34,7 +34,6 @@ public class PC_PortalGun : MonoBehaviour {
 
     private float angle;
     private RaycastHit2D raycast;
-    private bool canShoot;
 
     private void Start() {
         pc_portalGun = this;
@@ -64,7 +63,11 @@ public class PC_PortalGun : MonoBehaviour {
             Vector2 direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
             raycast = Physics2D.Raycast(transform.position, direction, portalGunDistance, wallLayermask);
 
-            if (raycast == true) {
+            if (raycast == true ) {
+
+                bool canShoot = !raycast.collider.CompareTag( unportalableTag );
+
+                print(canShoot.ToString());
 
                 lineRenderer.enabled = true;
                 Vector3[] lineToRender = { position, raycast.point };
@@ -72,24 +75,30 @@ public class PC_PortalGun : MonoBehaviour {
 
                 angle = Mathf.Atan2(raycast.normal.y, raycast.normal.x) * Mathf.Rad2Deg;
 
-                VisualizePortal();
+                if(canShoot)
+                {
+                    VisualizePortal();
 
-                if (Input.GetKeyUp(KeyCode.Alpha1) == true
-                    && canShootBluePortal == true) {
-                    if (numberOfBlueShots != 0) {
-                        ShootPortal(bluePortal);
-                        numberOfBlueShots--;
+                    if( Input.GetKeyUp( KeyCode.Alpha1 ) == true
+                        && canShootBluePortal == true )
+                    {
+                        if( numberOfBlueShots != 0 )
+                        {
+                            ShootPortal( bluePortal );
+                            numberOfBlueShots--;
+                        }
+                    }
+
+                    if( Input.GetKeyUp( KeyCode.Alpha2 ) == true
+                        && canShootOrangePortal == true )
+                    {
+                        if( numberOfOrangeShots != 0 )
+                        {
+                            ShootPortal( orangePortal );
+                            numberOfOrangeShots--;
+                        }
                     }
                 }
-
-                if (Input.GetKeyUp(KeyCode.Alpha2) == true
-                    && canShootOrangePortal == true) {
-                    if (numberOfOrangeShots != 0) {
-                        ShootPortal(orangePortal);
-                        numberOfOrangeShots--;
-                    }
-                }
-
             }
         }
 
