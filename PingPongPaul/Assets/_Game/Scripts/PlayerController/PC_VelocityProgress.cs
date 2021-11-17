@@ -44,10 +44,12 @@ public class PC_VelocityProgress : MonoBehaviour {
 
     public void ResetShots(ResetEvent resetEvent) {
         shotsLeft = maxShots;
+        PC_UIController.pc_uiController.SetMaxShots(maxShots);
+        PC_UIController.pc_uiController.SetCurrentShots(shotsLeft);
         if (maxShots == -1) {
             shotsLeft = 9999;
-            PC_UIController.pc_uiController.SetMaxShots(maxShots);
             PC_UIController.pc_uiController.SetCurrentShots(shotsLeft);
+            PC_UIController.pc_uiController.SetMaxShots(9999);
         }
     }
 

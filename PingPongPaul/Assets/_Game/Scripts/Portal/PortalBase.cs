@@ -82,14 +82,16 @@ public abstract class PortalBase : MonoBehaviour
 		if( paul.TryGetComponent( out Paul paulPaul ) ) { paulPaul.EndPaulsTeleportingAdventure(); }
 	}
 
-	private void OnDrawGizmosSelected()
-	{
+#if UNITY_EDITOR
+	private void OnDrawGizmosSelected() {
+		
 		Handles.ArrowHandleCap( 0,
 								transform.position,
 								Quaternion.LookRotation( transform.right, transform.up ),
 								2.0f,
 								EventType.Repaint );
 	}
+#endif
 
 	protected void SetCanTeleport( bool newActive ) { canTeleport = newActive; }
 
@@ -99,6 +101,7 @@ public abstract class PortalBase : MonoBehaviour
 	{
 		if( canBeReset == true ) { OnReset(); }
 	}
+
 
 	private void Update()
 	{
