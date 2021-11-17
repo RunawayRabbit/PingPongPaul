@@ -146,7 +146,7 @@ public class PC_PortalGun : MonoBehaviour {
     }
 
     private void VisualizePortal(Vector3 raycastPoint) {
-        portalVisualizer.position = raycastPoint + visualizedPortal.CheckPosition(raycast.point);
+        portalVisualizer.position = raycastPoint + visualizedPortal.CheckPosition(raycastPoint);
         portalVisualizer.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
