@@ -42,6 +42,11 @@ public class PC_VelocityProgress : MonoBehaviour {
         }
     }
 
+    public void SetShots(int shots) {
+            shotsLeft = shots;
+        
+    }
+
     public void ResetShots(ResetEvent resetEvent) {
         shotsLeft = maxShots;
         PC_UIController.pc_uiController.SetMaxShots(maxShots);
