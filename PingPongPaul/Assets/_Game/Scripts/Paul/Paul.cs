@@ -12,6 +12,8 @@ public class Paul : MonoBehaviour
 
 	private bool isAttachedToBall;
 
+	[SerializeField] public bool breakForDemonstrationPurposes = true;
+
 	[SerializeField] private SpriteRenderer PaulFace;
 
 	[SerializeField] private Sprite paulHappy;
@@ -78,14 +80,21 @@ public class Paul : MonoBehaviour
 
 	public void PreparePaulForTeleportation()
 	{
+		if( breakForDemonstrationPurposes )
+		{
+			hasPortalledRecently = false;
+			MakePaulSad();
+			return;
+		}
+
 		foreach( var rb in gameObject.GetComponentsInChildren<Rigidbody2D>() )
 		{
 			if( rb == _rb ) continue;
 			rb.constraints = RigidbodyConstraints2D.FreezeAll;
 			rb.simulated   = false;
 		}
-
 		SurprisePaul();
+
 	}
 
 	private void UnfreezePaul()

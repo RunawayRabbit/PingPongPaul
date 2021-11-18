@@ -43,7 +43,8 @@ public abstract class PortalBase : MonoBehaviour
 	protected void EnterPortal( PortalBase toPortal, GameObject paul )
 	{
 		Paul paulPaul = paul.GetComponentInParent<Paul>();
-		if( paulPaul || paul.TryGetComponent( out paulPaul ) )
+		if( (paulPaul || paul.TryGetComponent( out paulPaul )) &&
+			!paulPaul.breakForDemonstrationPurposes)
 		{
 			if( paulPaul.hasPortalledRecently ) return;
 			paulPaul.PreparePaulForTeleportation();
@@ -84,7 +85,7 @@ public abstract class PortalBase : MonoBehaviour
 
 #if UNITY_EDITOR
 	private void OnDrawGizmos() {
-		
+
 		Handles.ArrowHandleCap( 0,
 								transform.position,
 								Quaternion.LookRotation( transform.right, transform.up ),
