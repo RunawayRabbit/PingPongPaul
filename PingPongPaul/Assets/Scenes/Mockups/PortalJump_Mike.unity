@@ -7992,7 +7992,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4764058551203048012, guid: af026e3d3f316b94ab5157e6bf45a975, type: 3}
       propertyPath: maxShots
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4764058551203048012, guid: af026e3d3f316b94ab5157e6bf45a975, type: 3}
       propertyPath: startZoomValue

@@ -83,13 +83,21 @@ public abstract class PortalBase : MonoBehaviour
 	}
 
 #if UNITY_EDITOR
-	private void OnDrawGizmosSelected() {
+	private void OnDrawGizmos() {
 		
 		Handles.ArrowHandleCap( 0,
 								transform.position,
 								Quaternion.LookRotation( transform.right, transform.up ),
 								2.0f,
 								EventType.Repaint );
+		Handles.color = Color.green;
+		Handles.ArrowHandleCap(1,
+								transform.position + transform.up * 0.85f,
+								Quaternion.LookRotation(transform.right, transform.up),
+								1.0f,
+								EventType.Repaint);
+		Handles.color = Color.white;
+
 	}
 #endif
 
