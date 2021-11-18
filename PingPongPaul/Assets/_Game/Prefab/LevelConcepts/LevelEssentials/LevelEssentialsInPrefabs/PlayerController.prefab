@@ -65,18 +65,15 @@ MonoBehaviour:
   wallLayermask:
     serializedVersion: 2
     m_Bits: 64
-  layermaskPortal:
-    serializedVersion: 2
-    m_Bits: 0
+  unportalableTag: Unportalable
   bluePortal: {fileID: 8964694790817032217, guid: 0246e2412d442f24ab131b88c6370258, type: 3}
-  bluePortalGhostPrefab: {fileID: 8964694790817032217, guid: 687910a5e4b40a64db967b712eadbc88, type: 3}
   canShootBluePortal: 1
   numberOfBlueShots: -1
   orangePortal: {fileID: 8964694790817032217, guid: 617f1cfef4af0834a85822f0d79483ab, type: 3}
-  orangePortalGhost: {fileID: 0}
   canShootOrangePortal: 1
   numberOfOrangeShots: -1
   VisualizationStyle: 1
+  visualizedPortal: {fileID: 0}
   portalGunDistance: 100
 --- !u!114 &7536717853944253082
 MonoBehaviour:
