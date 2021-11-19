@@ -65,7 +65,10 @@ public class LevelInstance : MonoBehaviour {
     private void ApplySettings() {
         Physics2D.gravity = new Vector2(0.0f, gravity);
 
-        BluePortal.bluePortal     = bluePortal;
+        if(bluePortal && !BluePortal.bluePortal)
+            BluePortal.bluePortal     = bluePortal;
+
+        if(orangePortal && !OrangePortal.orangePortal)
         OrangePortal.orangePortal = orangePortal;
     }
 
